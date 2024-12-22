@@ -1,18 +1,20 @@
-import React from "react";
+import React, { useState } from "react";
 import readingAnimation from "../assets/aniamtion_json/reading-animation.json";
 import Lottie from "lottie-react";
 import useAuth from "../customHooks/useAuth";
+import axios from "axios";
+import Swal from "sweetalert2";
 
 const AddTutorial = () => {
-  const {userInfo} = useAuth()
-  console.log(userInfo)
+  const { userInfo } = useAuth();
+  console.log(userInfo);
   const submitHandler = (e) => {
     e.preventDefault();
     const form = e.target;
     const name = form.name.value;
     const email = form.email.value;
     const photoURL = form.photoURL.value;
-    const language = form.language.value;
+    const category = form.category.value;
     const price = parseFloat(form.price.value);
     const description = form.description.value;
     const review = parseFloat(form.review.value);
@@ -20,17 +22,58 @@ const AddTutorial = () => {
       name,
       email,
       photoURL,
-      language,
+      category,
       price,
       description,
       review,
     };
-    console.log(tutorialData)
+    axios
+      .post("http://localhost:5000/tutorials", tutorialData)
+      .then((res) => {
+        console.log(res.data);
+        if (res.data.insertedId) {
+          Swal.fire({
+            title: "Added Tutorial",
+            text: "New Tutorial Added Successful!",
+            icon: "success",
+            confirmButtonText: "OK",
+          });
+        }
+      })
+      .catch((error) => {
+        Swal.fire({
+          title: "Failed To Register!",
+          text: error.code,
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
+      });
+    console.log(tutorialData);
+  };
+
+  const categories = [
+    { id: 1, categoryName: "English Tutors" },
+    { id: 2, categoryName: "Spanish Tutors" },
+    { id: 3, categoryName: "French Tutors" },
+    { id: 4, categoryName: "German Tutors" },
+    { id: 5, categoryName: "Italian Tutors" },
+    { id: 6, categoryName: "Chinese Tutors" },
+    { id: 7, categoryName: "Arabic Tutors" },
+    { id: 8, categoryName: "Japanese Tutors" },
+    { id: 9, categoryName: "Portuguese Tutors" },
+    { id: 10, categoryName: "Korean Tutors" },
+    { id: 11, categoryName: "Russian Tutors" },
+    { id: 12, categoryName: "Hindi Tutors" },
+  ];
+
+  const [selectedCategory, setSelectedCategory] = useState("");
+  const onChange = (e) => {
+    setSelectedCategory(e.target.value);
   };
   return (
     <div className="hero bg-base-200">
       <div className="hero-content flex-col md:flex-row md:gap-16">
-      <div className="flex-1">
+        <div className="flex-1">
           <Lottie animationData={readingAnimation}></Lottie>
         </div>
         <form
@@ -40,9 +83,10 @@ const AddTutorial = () => {
           <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-4xl my-8">
             Add New Tutorial
           </h1>
+          {/* Name */}
           <div className="w-full">
             <input
-            value={userInfo.displayName}
+              value={userInfo.displayName}
               type="text"
               name="name"
               required
@@ -50,10 +94,10 @@ const AddTutorial = () => {
               className="rounded-none input input-bordered w-full max-w-xl"
             />
           </div>
+          {/* Email */}
           <div className="w-full">
             <input
-            value={userInfo.email}
-
+              value={userInfo.email}
               type="email"
               name="email"
               required
@@ -61,6 +105,7 @@ const AddTutorial = () => {
               className="rounded-none input input-bordered w-full max-w-xl"
             />
           </div>
+          {/* Photo URL */}
           <div className="w-full">
             <input
               type="url"
@@ -70,25 +115,38 @@ const AddTutorial = () => {
               className="rounded-none input input-bordered w-full max-w-xl"
             />
           </div>
-          <div className="w-full">
-            <input
-              type="text"
-              name="language"
-              required
-              placeholder="Language"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
+          <div className="lg:flex gap-2 lg:px-2">
+            {/* Category */}
+            <div className="w-full">
+              <select
+                className="rounded-none input input-bordered w-full max-w-xl"
+                name="category"
+                value={selectedCategory}
+                onChange={onchange}
+              >
+                <option value="" disabled>
+                  Select a category
+                </option>
+                {categories.map((category) => (
+                  <option key={category.id} value={category.categoryName}>
+                    {category.categoryName}
+                  </option>
+                ))}
+              </select>
+            </div>
+            {/* Price */}
+            <div className="w-full mt-2 lg:mt-0">
+              <input
+                type="number"
+                step="any"
+                name="price"
+                required
+                placeholder="Price"
+                className="rounded-none input input-bordered w-full max-w-xl"
+              />
+            </div>
           </div>
-          <div className="w-full">
-            <input
-              type="number"
-              step="any"
-              name="price"
-              required
-              placeholder="Price"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
+          {/* Description */}
           <div className="w-full">
             <input
               type="text"
@@ -98,9 +156,10 @@ const AddTutorial = () => {
               className="rounded-none input input-bordered w-full max-w-xl"
             />
           </div>
+          {/* Review */}
           <div className="w-full">
             <input
-            defaultValue= "0"
+              defaultValue="0"
               type="number"
               step="any"
               name="review"
