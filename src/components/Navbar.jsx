@@ -68,7 +68,7 @@ const Navbar = () => {
     });
   };
   return (
-    <nav className="h-12 flex lg:justify-between items-center relative">
+    <nav className="h-[48px] md:h-[64px] flex lg:justify-between items-center relative">
       {/* Right section */}
       <div
         tabIndex={0}
