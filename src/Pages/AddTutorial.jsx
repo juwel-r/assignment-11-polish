@@ -1,16 +1,48 @@
 import React from "react";
 import readingAnimation from "../assets/aniamtion_json/reading-animation.json";
 import Lottie from "lottie-react";
+import useAuth from "../customHooks/useAuth";
 
 const AddTutorial = () => {
-
+  const {userInfo} = useAuth()
+  console.log(userInfo)
+  const submitHandler = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const language = form.language.value;
+    const price = parseFloat(form.price.value);
+    const description = form.description.value;
+    const review = parseFloat(form.review.value);
+    const tutorialData = {
+      name,
+      email,
+      photoURL,
+      language,
+      price,
+      description,
+      review,
+    };
+    console.log(tutorialData)
+  };
   return (
     <div className="hero bg-base-200">
-      <div className="hero-content flex-col lg:flex-row-reverse gap-16">
-        <form onSubmit={submitHandler} className="flex-1 content-end w-full flex flex-col gap-2 mx-auto">
-        <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-4xl my-8">Add New Tutorial</h1>
+      <div className="hero-content flex-col md:flex-row md:gap-16">
+      <div className="flex-1">
+          <Lottie animationData={readingAnimation}></Lottie>
+        </div>
+        <form
+          onSubmit={submitHandler}
+          className="flex-1 content-end w-full flex flex-col gap-2 mx-auto text-center"
+        >
+          <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-4xl my-8">
+            Add New Tutorial
+          </h1>
           <div className="w-full">
             <input
+            value={userInfo.displayName}
               type="text"
               name="name"
               required
@@ -20,7 +52,9 @@ const AddTutorial = () => {
           </div>
           <div className="w-full">
             <input
-              type="text"
+            value={userInfo.email}
+
+              type="email"
               name="email"
               required
               placeholder="Email"
@@ -29,7 +63,7 @@ const AddTutorial = () => {
           </div>
           <div className="w-full">
             <input
-              type="text"
+              type="url"
               name="photoURL"
               required
               placeholder="Photo URL"
@@ -47,7 +81,8 @@ const AddTutorial = () => {
           </div>
           <div className="w-full">
             <input
-              type="text"
+              type="number"
+              step="any"
               name="price"
               required
               placeholder="Price"
@@ -65,7 +100,9 @@ const AddTutorial = () => {
           </div>
           <div className="w-full">
             <input
-              type="text"
+            defaultValue= "0"
+              type="number"
+              step="any"
               name="review"
               required
               placeholder="Review"
@@ -80,9 +117,6 @@ const AddTutorial = () => {
             />
           </div>
         </form>
-        <div className="flex-1">
-          <Lottie animationData={readingAnimation}></Lottie>
-        </div>
       </div>
     </div>
   );
