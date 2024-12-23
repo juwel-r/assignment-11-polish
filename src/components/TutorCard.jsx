@@ -1,13 +1,14 @@
 import React from "react";
 import { FaGraduationCap } from "react-icons/fa";
 import { MdStar } from "react-icons/md";
+import { Link } from "react-router-dom";
 
 const TutorCard = ({ tutor }) => {
   // name, image,language, price, review, details
 
-  const { name, email, photoURL, category, price, description, review } = tutor;
+  const {_id, name, email, photoURL, category, price, description, review } = tutor;
   return (
-    <div className="grid grid-cols-[160px_5fr] border p-4">
+    <div className="grid grid-cols-[160px_5fr] border p-4 shadow-lg">
 
       {/* Photo */}
       <section className="border md:row-span-2">
@@ -44,9 +45,9 @@ const TutorCard = ({ tutor }) => {
           {description}
         </div>
         <div className="bottom-right self-end">
-          <button className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none">
-            Book Session
-          </button>
+          <Link to={`/tutor/${_id}`} className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none">
+            View Details
+          </Link >
         </div>
       </div>
     </div>

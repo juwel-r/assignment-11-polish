@@ -92,9 +92,11 @@ const Navbar = () => {
         </span>
       </div>
       {/* Logo */}
-      <div className="text-2xl lg:text-3xl text-nowrap px-2 min-w-fit">
-        <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
-      </div>
+      <Link to="/" className="text-2xl lg:text-3xl text-nowrap px-2 min-w-fit">
+        
+          <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
+      
+      </Link>
 
       {/* Menu */}
       <section className="top-menu flex justify-center w-full mx-auto ">

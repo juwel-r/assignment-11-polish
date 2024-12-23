@@ -39,7 +39,8 @@ const router = createBrowserRouter([
             },
             {
                 element:<PrivateRoute><TutorDetails></TutorDetails></PrivateRoute>,
-                path:'/tutor/:details'
+                path:'/tutor/:details',
+                loader:({params})=>fetch(`http://localhost:5000/tutor/${params.details}`)
             },
             {
                 element:<PrivateRoute><AddTutorial></AddTutorial></PrivateRoute>,
