@@ -5,7 +5,7 @@ const TutorCard = ({ tutor }) => {
   return (
     <div className="flex items-center p-4 border rounded-lg shadow-sm bg-white">
       {/* Tutor Image */}
-      <div className="w-20 h-20 rounded-full overflow-hidden mr-4">
+      <div className="w-20 h-20  overflow-hidden mr-4 border">
         <img src={photoURL} alt={name} className="w-full h-full object-cover" />
       </div>
 

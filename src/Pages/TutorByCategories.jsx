@@ -1,9 +1,17 @@
-import React from "react";
+import axios from "axios";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 
 const TutorByCategories = () => {
   const { category } = useParams();
-  console.log(category);
+  const [tutors, setTutors] = useState([]);
+  useEffect(() => {
+    axios.get(`http://localhost:5000/tutorials/${category}`).then((res) => {
+      console.log(res.data);
+      setTutors(res.data);
+    });
+  }, []);
+  console.log(tutors);
   return <div></div>;
 };
 

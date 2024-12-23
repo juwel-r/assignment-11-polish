@@ -15,6 +15,7 @@ import {
 } from "react-icons/fa";
 import { PiCellTowerLight } from "react-icons/pi";
 import { MdOutlineSchool, MdTranslate } from "react-icons/md";
+import axios from "axios";
 
 const categories = [
   {
@@ -50,9 +51,7 @@ const categories = [
   { id: 11, title: "Russian Tutors", count: "2,049", logo: <FaFlagUsa /> },
   { id: 12, title: "Hindi Tutors", count: "1,720", logo: <MdTranslate /> },
 ];
-const categoryHandler =(category)=>{
 
-}
 const LanguageCategories = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
