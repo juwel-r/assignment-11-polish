@@ -50,13 +50,15 @@ const categories = [
   { id: 11, title: "Russian Tutors", count: "2,049", logo: <FaFlagUsa /> },
   { id: 12, title: "Hindi Tutors", count: "1,720", logo: <MdTranslate /> },
 ];
+const categoryHandler =(category)=>{
 
+}
 const LanguageCategories = () => {
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 my-12">
       {categories.map((category) => (
         <Link
-          to="/find-tutors"
+          to={`/find-tutors/${category.title}`}
           key={category.id}
           className="flex justify-between items-center bg-white p-4 border shadow-sm hover:shadow-md rounded-lg"
         >
