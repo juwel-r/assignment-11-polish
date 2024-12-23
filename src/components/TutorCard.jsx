@@ -1,48 +1,53 @@
 import React from "react";
+import { FaGraduationCap } from "react-icons/fa";
+import { MdStar } from "react-icons/md";
 
 const TutorCard = ({ tutor }) => {
+  // name, image,language, price, review, details
+
   const { name, email, photoURL, category, price, description, review } = tutor;
   return (
-    <div className="flex items-center p-4 border rounded-lg shadow-sm bg-white">
-      {/* Tutor Image */}
-      <div className="w-20 h-20  overflow-hidden mr-4 border">
-        <img src={photoURL} alt={name} className="w-full h-full object-cover" />
-      </div>
+    <div className="grid grid-cols-[160px_5fr] border p-4">
 
-      {/* Tutor Info */}
-      <div className="flex-grow">
-        <div className="flex justify-between items-center">
-          <div>
-            <h3 className="font-bold text-lg">{name}</h3>
-            <p className="text-sm text-gray-500 flex items-center">
-              {category}
-            </p>
-          </div>
-          <p className="text-pink-600 font-bold text-lg">Price:{price}</p>
-        </div>
-        <p className="text-sm text-gray-500">
-         {review}
+      {/* Photo */}
+      <section className="border md:row-span-2">
+        <img className="h-full w-full object-cover" src={photoURL} alt={name} />
+      </section>
+
+      {/* Top */}
+      <section className="md:text-2xl text-xl md:font-semibold font-semibold md:ml-6 ml-4 flex flex-col md:flex-row md:justify-between">
+        <p>
+          {name}
+          <p className="text-white font-normal text-nowrap text-sm bg-primary/80  mt-2 px-3 w-fit flex items-center gap-2">
+            <FaGraduationCap />
+            {category}
+          </p>
         </p>
-        {/* <p className="text-sm text-gray-500">Speaks Arabic (Native)</p> */}
-        {/* <p className="text-sm text-gray-500 italic mt-1">
-          Powered by Google Translate{" "}
-          <a href="#" className="underline">
-            Show original
-          </a>
-        </p> */}
-        <p className="text-sm mt-2">{description}</p>
-      </div>
 
-      {/* Actions */}
-      <div className="flex flex-col items-center ml-4">
-        <p className="text-lg font-bold">${price}</p>
-        <p className="text-sm text-gray-500">{review}</p>
-        <button className="mt-2 bg-pink-500 text-white px-4 py-2 rounded-full">
-          Book trial lesson
-        </button>
-        <button className="mt-2 border px-4 py-2 rounded-full">
-          Send message
-        </button>
+        <div className="flex items-start gap-4 lg:gap-6 mt-4 md:mt-0">
+          <p className="flex flex-col items-start">
+            <span className="flex gap-1 items-center">
+              <MdStar />
+              {review}
+            </span>
+            <p className="text-sm font-normal text-gray-500">Review</p>
+          </p>
+          <p className="flex flex-col items-start">
+            ${price}
+            <p className="text-sm font-normal text-gray-500">Price</p>
+          </p>
+        </div>
+      </section>
+      {/* Bottom */}
+      <div className="md:ml-6 flex flex-col md:flex-row justify-between col-span-2 md:col-span-1 gap-4 mt-4">
+        <div className="bottom-left text-sm text-gray-500">
+          {description}
+        </div>
+        <div className="bottom-right self-end">
+          <button className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none">
+            Book Session
+          </button>
+        </div>
       </div>
     </div>
   );
