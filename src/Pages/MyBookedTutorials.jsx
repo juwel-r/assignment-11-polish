@@ -17,7 +17,6 @@ const MyBookedTutorials = () => {
       });
   }, [review]);
 
-
   const reviewUpdateHandler = (tutorId, reviews, name) => {
     axios
       .put(`http://localhost:5000/tutorials/${tutorId}`)
@@ -36,15 +35,14 @@ const MyBookedTutorials = () => {
       })
       .catch((err) => {
         Swal.fire({
-            title: "ERROR!",
-            text: "Something went wrong",
-            icon: "success",
-            confirmButtonText: "Try Again",
-          });
+          title: "ERROR!",
+          text: "Something went wrong",
+          icon: "error",
+          confirmButtonText: "Try Again",
+        });
         console.log(err);
       });
   };
-
 
   if (!bookedTutorials.length) {
     return (
@@ -59,74 +57,76 @@ const MyBookedTutorials = () => {
     );
   }
 
-
-
   return (
-    <div className="container mx-auto px-4 py-8 pt-4">
-      <h1 className=" text-2xl md:text-3xl lg:md:text-4xl font-semibold">
-        You Have Booked {bookedTutorials.length} Sessions
-      </h1>
-      <p>You can feedback for your tutor as Review them.</p>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mt-4 md:mt-8">
-        {bookedTutorials.map((tutorial) => (
-          <div
-            key={tutorial._id}
-            className="relative  shadow-xl  overflow-hidden transform hover:scale-105 transition-transform duration-300"
-          >
-            {/* Image Section */}
-            <div className="relative">
-              <img
-                src={tutorial.tutorPhoto}
-                alt="Tutor"
-                className="w-full h-56 object-cover"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-50"></div>
-              <div className="absolute bottom-4 left-4 text-white">
-                <h5 className="text-lg font-bold">{tutorial.tutorName}</h5>
-                <h5 className="text-sm">{tutorial.tutorCategory}</h5>
-              </div>
-            </div>
+<div className="container mx-auto px-6 py-12">
+  <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">
+    You Have Booked {bookedTutorials.length} Sessions
+  </h1>
+  <p className="text-center text-lg text-gray-600 mb-8">
+    Review and provide feedback for your tutors.
+  </p>
+  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+    {bookedTutorials.map((tutorial) => (
+      <div
+        key={tutorial._id}
+        className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:rotate-[0.5deg] hover:scale-[1.01] hover:shadow-xl"
+      >
+        {/* Image Section */}
+        <div className="relative group">
+          <img
+            src={tutorial.tutorPhoto}
+            alt="Tutor"
+            className="w-full h-64 object-cover group-hover:opacity-90 transition-all duration-500"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+          <div className="absolute bottom-6 left-6 text-white">
+            <h5 className="text-2xl font-bold">{tutorial.tutorName}</h5>
+            <h5 className="text-lg">{tutorial.tutorCategory}</h5>
+          </div>
+        </div>
 
-            {/* Content Section */}
-            <div className="p-4">
-              <div className="">
-                <p className="font-medium ">
-                  Price:
-                  <span className="text-sm text-gray-500 ml-2">
-                    ${tutorial.tutorPrice}
-                  </span>
-                </p>
-              </div>
-              <p className="font-medium flex items-center">
-                Reviews:
-                <span className="text-sm ml-2">{tutorial.review}</span>
-              </p>
-            </div>
-
-            {/* Floating Badge */}
-            <div className="absolute top-4 right-4 bg-primary text-white px-3 py-1 shadow-md">
-              Booked
-            </div>
-
-            {/* Action Button */}
-            <div
-              onClick={() =>
-                reviewUpdateHandler(
-                  tutorial.tutorId,
-                  tutorial.review,
-                  tutorial.tutorName
-                )
-              }
-              className="p-4 border-t flex justify-start lg:justify-center"
-            >
-              <button className="btn btn-sm h-10 rounded-none px-4 py-2 bg-gradient-to-r from-primary to-blue-600 text-white font-bold  hover:from-blue-600 hover:to-primary transition-color duration-500">
-                Review
-              </button>
+        {/* Content Section */}
+        <div className="p-6">
+          <div className="flex justify-between items-center mb-4">
+            <p className="text-gray-800 font-semibold text-lg">
+              ${tutorial.tutorPrice}
+            </p>
+            <div className="flex items-center gap-2 text-yellow-500">
+              <MdStar className="text-xl" />
+              <span className="font-semibold">{tutorial.review}</span>
             </div>
           </div>
-        ))}
+          <p className="text-sm text-gray-600 mb-6">
+            {tutorial.description || "No description available."}
+          </p>
+        </div>
+
+        {/* Floating Badge */}
+        <div className="absolute top-4 right-4 bg-primary text-white text-xs px-3 py-1 rounded-full shadow-lg">
+          Booked
+        </div>
+
+        {/* Action Button */}
+        <div
+          onClick={() =>
+            reviewUpdateHandler(
+              tutorial.tutorId,
+              tutorial.review,
+              tutorial.tutorName
+            )
+          }
+          className="p-4 border-t flex justify-center"
+        >
+          <button className="px-6 py-2 bg-gradient-to-r from-primary to-blue-600 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-primary transition-all duration-500">
+            Review
+          </button>
+        </div>
       </div>
-    </div>
+    ))}
+  </div>
+</div>
+
+
   );
 };
 

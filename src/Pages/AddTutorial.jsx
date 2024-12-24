@@ -69,7 +69,6 @@ const AddTutorial = () => {
     { id: 12, categoryName: "Hindi" },
   ];
 
-
   return (
     <div className="hero bg-base-200">
       <div className="hero-content flex-col md:flex-row md:gap-16">
@@ -80,7 +79,7 @@ const AddTutorial = () => {
           onSubmit={submitHandler}
           className="flex-1 content-end w-full flex flex-col gap-2 mx-auto text-center"
         >
-          <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-4xl my-8">
+          <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-3xl my-8">
             Add New Tutorial
           </h1>
           {/* Name */}
@@ -89,7 +88,7 @@ const AddTutorial = () => {
               value={userInfo.displayName}
               type="text"
               name="name"
-              required
+              readOnly
               placeholder="Name"
               className="rounded-none input input-bordered w-full max-w-xl"
             />
@@ -100,7 +99,7 @@ const AddTutorial = () => {
               value={userInfo.email}
               type="email"
               name="email"
-              required
+              readOnly
               placeholder="Email"
               className="rounded-none input input-bordered w-full max-w-xl"
             />
@@ -122,7 +121,7 @@ const AddTutorial = () => {
                 className="rounded-none input input-bordered w-full max-w-xl"
                 name="category"
                 value={category}
-                onChange={(e)=>setCategory(e.target.value)}
+                onChange={(e) => setCategory(e.target.value)}
               >
                 <option value="" disabled>
                   Select Language

@@ -6,51 +6,69 @@ import { Link } from "react-router-dom";
 const TutorCard = ({ tutor }) => {
   // name, image,language, price, review, details
 
-  const {_id, name, email, photoURL, category, price, description, review } = tutor;
+  const { _id, name, email, photoURL, category, price, description, review } =
+    tutor;
   return (
-    <div className="grid grid-cols-[1fr_5fr] border p-4 shadow-lg">
+<div className="grid grid-cols-2 md:grid-cols-[2fr_5fr]  p-6 shadow-lg rounded-lg  gap-4 transform transition duration-300 ease-in-out hover:scale-[1.001] hover:shadow-2xl hover:-rotate-[0.5deg]">
+  {/* Photo */}
+  <section className="relative md:row-span-3 rounded-lg overflow-hidden transition-transform duration-300 hover:scale-[1.01] hover:rotate-2">
+    <img
+      className="h-full w-full object-cover rounded-lg"
+      src={photoURL}
+      alt={name}
+    />
+    <div className="absolute top-2 left-2 bg-primary/80 text-white text-xs px-3 py-1 rounded-full shadow-lg">
+      {category}
+    </div>
+  </section>
 
-      {/* Photo */}
-      <section className="border md:row-span-2">
-        <img className="h-full w-full object-cover" src={photoURL} alt={name} />
-      </section>
-
-      {/* Top */}
-      <section className="md:text-2xl text-xl md:font-semibold font-semibold md:ml-6 ml-4 flex flex-col md:flex-row md:justify-between">
-        <p>
-          {name}
-          <p className="text-white font-normal text-nowrap text-sm bg-primary/80  mt-2 px-3 w-fit flex items-center gap-2">
-            <FaGraduationCap />
-            {category}
-          </p>
-        </p>
-
-        <div className="flex items-start gap-4 lg:gap-6 mt-4 md:mt-0">
-          <p className="flex flex-col items-start">
-            <span className="flex gap-1 items-center">
-              <MdStar />
-              {review}
-            </span>
-            <p className="text-sm font-normal text-gray-500">Review</p>
-          </p>
-          <p className="flex flex-col items-start">
-            ${price}
-            <p className="text-sm font-normal text-gray-500">Price</p>
-          </p>
-        </div>
-      </section>
-      {/* Bottom */}
-      <div className="md:ml-6 flex flex-col md:flex-row justify-between col-span-2 md:col-span-1 gap-4 mt-4 flex-wrap">
-        <div className="bottom-left text-sm text-gray-500">
-          {description}
-        </div>
-        <div className="bottom-right self-end">
-          <Link to={`/tutor/${_id}`} className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none">
-            View Details
-          </Link >
-        </div>
+  {/* Top Section */}
+  <section className="flex flex-col justify-between md:flex-row md:justify-between mt-4 md:mt-0">
+    <div className="flex flex-col md:w-[70%]">
+      <h3 className="text-xl md:text-2xl font-semibold text-gray-800">
+        {name}
+      </h3>
+      <div className="flex items-center gap-2 mt-2 text-sm text-primary font-medium">
+        <FaGraduationCap className="text-lg" />
+        {category}
       </div>
     </div>
+
+    <div className="flex flex-col md:flex-row items-start gap-6 mt-4 md:mt-0">
+      {/* Review */}
+      <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
+        <span className="font-semibold">
+          {review}
+        </span>
+        <p className="md:text-sm font-normal text-gray-500">Reviews</p>
+      </div>
+
+      {/* Price */}
+      <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
+        <span className="font-semibold">
+          ${price}
+        </span>
+        <p className="md:text-sm font-normal text-gray-500">Price</p>
+      </div>
+    </div>
+  </section>
+
+  {/* Description */}
+  <p className="mt-4 text-gray-600 text-sm leading-relaxed col-span-2 md:col-span-1">
+    {description}
+  </p>
+
+  {/* Bottom Section */}
+  <div className="col-span-2 md:col-span-1 md:place-self-end">
+    <Link
+      to={`/tutor/${_id}`}
+      className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg shadow-md hover:bg-primary/90 transition duration-200 transform hover:scale-105"
+    >
+      View Details
+    </Link>
+  </div>
+</div>
+
   );
 };
 

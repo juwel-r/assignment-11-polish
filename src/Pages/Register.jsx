@@ -40,8 +40,8 @@ const Register = () => {
     }
     return errors;
   };
-  
-  console.log(errorMessage)
+
+  console.log(errorMessage);
   const handleSubmit = (e) => {
     e.preventDefault();
     const errors = validateSignup();
@@ -123,7 +123,7 @@ const Register = () => {
       ) : (
         <>
           <div>
-            <h1 className="text-center font-semibold text-2xl md: lg:text-4xl">
+            <h1 className="text-center font-semibold text-2xl md: lg:text-3xl">
               Welcome To Edu Mate!
             </h1>
             <h1 className="text-center text-xl lg:text-2xl mt-3">
@@ -150,7 +150,7 @@ const Register = () => {
                     className="input input-bordered rounded-none"
                     placeholder="Name"
                     value={name}
-                    onChange={(e)=>setName(e.target.value)}
+                    onChange={(e) => setName(e.target.value)}
                   />
                 </div>
                 {/* Email Input */}
@@ -163,7 +163,7 @@ const Register = () => {
                     className="input input-bordered rounded-none"
                     placeholder="Email"
                     value={email}
-                    onChange={(e)=>setEmail(e.target.value)}
+                    onChange={(e) => setEmail(e.target.value)}
                   />
                 </div>
                 {/* Password Input */}
@@ -176,7 +176,7 @@ const Register = () => {
                     className="input input-bordered rounded-none"
                     placeholder="Password"
                     value={password}
-                    onChange={(e)=>setPassword(e.target.value)}
+                    onChange={(e) => setPassword(e.target.value)}
                   />
                   <span
                     onClick={() => setShowPass(!showPass)}
@@ -195,14 +195,16 @@ const Register = () => {
                     className="input input-bordered rounded-none"
                     placeholder="Photo URL"
                     value={photoURL}
-                    onChange={(e)=>setPhotoURL(e.target.value)}
+                    onChange={(e) => setPhotoURL(e.target.value)}
                   />
                 </div>
                 {/* Submit Button */}
                 <div className="form-control mt-6">
-                  {
-                    errorMessage ? <p className="text-red-500 pb-2">{errorMessage}</p>:""
-                  }
+                  {errorMessage ? (
+                    <p className="text-red-500 pb-2">{errorMessage}</p>
+                  ) : (
+                    ""
+                  )}
                   <button
                     type="submit"
                     className="btn btn-outline rounded-none"

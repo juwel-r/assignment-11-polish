@@ -97,17 +97,22 @@ const Login = () => {
         <LoadingSpin></LoadingSpin>
       ) : (
         <>
-        <h1 className="text-center font-semibold text-2xl lg:text-4xl">Welcome Back!</h1>
-            <h1 className="text-center text-xl lg:text-2xl mt-2">
-              Enter Your Credential to Login!
-            </h1>
+          <h1 className="text-center font-semibold text-2xl lg:text-3xl">
+            Welcome Back!
+          </h1>
+          <h1 className="text-center text-xl lg:text-2xl mt-2">
+            Enter Your Credential to Login!
+          </h1>
           <div className="flex flex-col md:flex-row-reverse md:px-8 mt-8">
             <div className="max-w-72 lg:max-w-[40%] mx-auto">
               {" "}
-              <Lottie animationData={loginAnimation}></Lottie>  
+              <Lottie animationData={loginAnimation}></Lottie>
             </div>
             <div className="w-10/12 md:w-[50%] lg:w-[30%] mx-auto shadow-2xl p-8">
-              <form onSubmit={handleSubmit} className="rounded-none md:pt-8 md:-mt-0 pt-0 -mt-12">
+              <form
+                onSubmit={handleSubmit}
+                className="rounded-none md:pt-8 md:-mt-0 pt-0 -mt-12"
+              >
                 {/* Email Input */}
                 <div className="form-control">
                   <label className="label">
@@ -144,32 +149,32 @@ const Login = () => {
                 </div>
                 {/* Submit Button */}
                 <div className="form-control mt-6">
-                  <button type="submit" className="btn btn-outline rounded-none">
+                  <button
+                    type="submit"
+                    className="btn btn-outline rounded-none"
+                  >
                     Login
                   </button>
                 </div>
               </form>
-              <div className="google mx-auto divider">
-                      OR
-                    </div>
-                    <button
-                      onClick={googleLogin}
-                      className=" btn btn-outline mb-4 rounded-none w-full"
-                    >
-                      <span className="text-2xl">
-                        <FcGoogle />
-                      </span>
-                      Continue With Google{" "}
-                    </button>
-                    <p className="">
-                      Haven't Account?{" "}
-                      <Link className="text-primary" to="/register">
-                        Register Here.
-                      </Link>
-                    </p>
+              <div className="google mx-auto divider">OR</div>
+              <button
+                onClick={googleLogin}
+                className=" btn btn-outline mb-4 rounded-none w-full"
+              >
+                <span className="text-2xl">
+                  <FcGoogle />
+                </span>
+                Continue With Google{" "}
+              </button>
+              <p className="">
+                Haven't Account?{" "}
+                <Link className="text-primary" to="/register">
+                  Register Here.
+                </Link>
+              </p>
             </div>
           </div>
-
         </>
       )}
     </section>

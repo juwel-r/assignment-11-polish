@@ -17,7 +17,7 @@ const TutorByCategories = () => {
   return (
     <div className="md:w-11/12 mx-auto w-[95%]">
       <div className="text-center">
-        <h1 className="md:w-8/12 mx-auto text-2xl md:text-3xl lg:text-4xl font-semibold">
+        <h1 className="md:w-8/12 mx-auto text-2xl md:text-3xl lg:text-3xl font-semibold">
           Total {tutors.length}{" "}
           <span className="text-primary font-bold ">{category}</span> Found
         </h1>
