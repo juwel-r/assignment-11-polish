@@ -8,7 +8,7 @@ const TutorCard = ({ tutor }) => {
 
   const {_id, name, email, photoURL, category, price, description, review } = tutor;
   return (
-    <div className="grid grid-cols-[160px_5fr] border p-4 shadow-lg">
+    <div className="grid grid-cols-[1fr_5fr] border p-4 shadow-lg">
 
       {/* Photo */}
       <section className="border md:row-span-2">
@@ -40,7 +40,7 @@ const TutorCard = ({ tutor }) => {
         </div>
       </section>
       {/* Bottom */}
-      <div className="md:ml-6 flex flex-col md:flex-row justify-between col-span-2 md:col-span-1 gap-4 mt-4">
+      <div className="md:ml-6 flex flex-col md:flex-row justify-between col-span-2 md:col-span-1 gap-4 mt-4 flex-wrap">
         <div className="bottom-left text-sm text-gray-500">
           {description}
         </div>

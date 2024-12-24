@@ -8,7 +8,7 @@ const FindTutors = () => {
   return (
     <div className="md:w-11/12 mx-auto w-[95%]">
       <div className="text-center">
-        <h1 className="md:w-8/12 mx-auto text-2xl md:text-4xl font-semibold">Find Your Perfect <span className="text-primary font-bold ">Tutor</span></h1>
+        <h1 className="md:w-8/12 mx-auto text-2xl md:text-3xl lg:text-4xl font-semibold">Find Your Perfect <span className="text-primary font-bold ">Tutor</span></h1>
         <p className="md:w-11/12 lg:w-[60%] mx-auto md:my-6 my-4 text-sm md:text-base">
           Explore top-rated tutors across various languages. Connect with
           experienced educators to enhance your learning journey. Book your
