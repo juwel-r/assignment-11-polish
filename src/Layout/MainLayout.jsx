@@ -15,7 +15,7 @@ const MainLayout = () => {
       <nav className="px-4 fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-white/80">
         <Navbar></Navbar>
       </nav>
-      <div className="mt-[60px] lg:mt-[90px]">
+      <div className="mt-[60px] lg:mt-[70px]">
       <Outlet></Outlet>
       </div>
       <Footer></Footer>
