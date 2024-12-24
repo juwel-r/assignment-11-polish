@@ -24,10 +24,32 @@ const MyTutorials = () => {
       .then(() => {
         setMyTutorials(myTutorials.filter((tutorial) => tutorial._id !== id));
         Swal.fire({
-          title: "Added Tutorial",
-          text: "New Tutorial Added Successful!",
-          icon: "success",
-          confirmButtonText: "OK",
+          title: "Are you sure?",
+          text: "You won't be able to revert this!",
+          icon: "warning",
+          showCancelButton: true,
+          confirmButtonColor: "#3085d6",
+          cancelButtonColor: "#d33",
+          confirmButtonText: "Yes, delete it!",
+          customClass: {
+            confirmButton:
+              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
+            cancelButton:
+              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-600 hover:to-red-600 transform transition-all duration-300",
+          },
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your tutorial has been deleted.",
+              icon: "success",
+              confirmButtonText: "OK",
+              customClass: {
+                confirmButton:
+                  "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
+              },
+            });
+          }
         });
       })
       .catch((error) => {
@@ -36,6 +58,10 @@ const MyTutorials = () => {
           text: error.code,
           icon: "error",
           confirmButtonText: "Try Again",
+          customClass: {
+            confirmButton:
+              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
+          },
         });
       });
   };
@@ -56,7 +82,7 @@ const MyTutorials = () => {
             timer: 1500,
           });
         }
-        setIsModalOpen(false)
+        setIsModalOpen(false);
       })
       .catch((err) => {
         Swal.fire({
@@ -68,6 +94,21 @@ const MyTutorials = () => {
         console.log(err);
       });
   };
+
+  const categories = [
+    { id: 1, categoryName: "English" },
+    { id: 2, categoryName: "Spanish" },
+    { id: 3, categoryName: "French" },
+    { id: 4, categoryName: "German" },
+    { id: 5, categoryName: "Italian" },
+    { id: 6, categoryName: "Chinese" },
+    { id: 7, categoryName: "Arabic" },
+    { id: 8, categoryName: "Japanese" },
+    { id: 9, categoryName: "Portuguese" },
+    { id: 10, categoryName: "Korean" },
+    { id: 11, categoryName: "Russian" },
+    { id: 12, categoryName: "Hindi" },
+  ];
 
   return (
     <div className="p-8 bg-gradient-to-br  to-gray-200  md:w-11/12 mx-auto w-[95%]">
@@ -223,8 +264,11 @@ const MyTutorials = () => {
                 <label className="block text-sm font-medium text-gray-500">
                   Category
                 </label>
-                <input
-                  type="text"
+
+                <select
+                  className="bg-white mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-4 py-2 transition-all duration-300 ease-in-out hover:ring-2 hover:ring-blue-500"
+                  required
+                  name="category"
                   value={currentTutorial?.category || ""}
                   onChange={(e) =>
                     setCurrentTutorial({
@@ -232,9 +276,16 @@ const MyTutorials = () => {
                       category: e.target.value,
                     })
                   }
-                  className="bg-white mt-2 block w-full border border-gray-300 rounded-lg shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm px-4 py-2 transition-all duration-300 ease-in-out hover:ring-2 hover:ring-blue-500"
-                  required
-                />
+                >
+                  <option value="" disabled>
+                    Select Language
+                  </option>
+                  {categories.map((category) => (
+                    <option key={category.id} value={category.categoryName}>
+                      {category.categoryName}
+                    </option>
+                  ))}
+                </select>
               </div>
 
               {/* Price */}
