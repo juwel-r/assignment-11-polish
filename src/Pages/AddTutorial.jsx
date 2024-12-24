@@ -7,7 +7,10 @@ import Swal from "sweetalert2";
 
 const AddTutorial = () => {
   const { userInfo } = useAuth();
-  console.log(userInfo);
+  const [category, setCategory] = useState("");
+  const selectHandler = (e) => {
+    setSelectedCategory(e.target.value);
+  };
   const submitHandler = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -52,24 +55,21 @@ const AddTutorial = () => {
   };
 
   const categories = [
-    { id: 1, categoryName: "English Tutors" },
-    { id: 2, categoryName: "Spanish Tutors" },
-    { id: 3, categoryName: "French Tutors" },
-    { id: 4, categoryName: "German Tutors" },
-    { id: 5, categoryName: "Italian Tutors" },
-    { id: 6, categoryName: "Chinese Tutors" },
-    { id: 7, categoryName: "Arabic Tutors" },
-    { id: 8, categoryName: "Japanese Tutors" },
-    { id: 9, categoryName: "Portuguese Tutors" },
-    { id: 10, categoryName: "Korean Tutors" },
-    { id: 11, categoryName: "Russian Tutors" },
-    { id: 12, categoryName: "Hindi Tutors" },
+    { id: 1, categoryName: "English" },
+    { id: 2, categoryName: "Spanish" },
+    { id: 3, categoryName: "French" },
+    { id: 4, categoryName: "German" },
+    { id: 5, categoryName: "Italian" },
+    { id: 6, categoryName: "Chinese" },
+    { id: 7, categoryName: "Arabic" },
+    { id: 8, categoryName: "Japanese" },
+    { id: 9, categoryName: "Portuguese" },
+    { id: 10, categoryName: "Korean" },
+    { id: 11, categoryName: "Russian" },
+    { id: 12, categoryName: "Hindi" },
   ];
 
-  const [selectedCategory, setSelectedCategory] = useState("");
-  const onChange = (e) => {
-    setSelectedCategory(e.target.value);
-  };
+
   return (
     <div className="hero bg-base-200">
       <div className="hero-content flex-col md:flex-row md:gap-16">
@@ -121,11 +121,11 @@ const AddTutorial = () => {
               <select
                 className="rounded-none input input-bordered w-full max-w-xl"
                 name="category"
-                value={selectedCategory}
-                onChange={onchange}
+                value={category}
+                onChange={(e)=>setCategory(e.target.value)}
               >
                 <option value="" disabled>
-                  Select a category
+                  Select Language
                 </option>
                 {categories.map((category) => (
                   <option key={category.id} value={category.categoryName}>

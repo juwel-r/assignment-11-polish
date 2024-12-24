@@ -17,7 +17,34 @@ const MyBookedTutorials = () => {
       });
   }, [review]);
 
-  console.log(bookedTutorials);
+
+  const reviewUpdateHandler = (tutorId, reviews, name) => {
+    axios
+      .put(`http://localhost:5000/tutorials/${tutorId}`)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          Swal.fire({
+            position: "top-end",
+            icon: "success",
+            title: `<span style="font-size: 20px; line-height: ;">Reviewed Successfully!    </span>`,
+            showConfirmButton: false,
+            timer: 1500,
+          });
+        }
+        setReview(reviews + 1);
+        console.log(res.data);
+      })
+      .catch((err) => {
+        Swal.fire({
+            title: "ERROR!",
+            text: "Something went wrong",
+            icon: "success",
+            confirmButtonText: "Try Again",
+          });
+        console.log(err);
+      });
+  };
+
 
   if (!bookedTutorials.length) {
     return (
@@ -32,20 +59,7 @@ const MyBookedTutorials = () => {
     );
   }
 
-  const reviewUpdateHandler = (tutorId, reviews, name) => {
-    axios.put(`http://localhost:5000/tutorials/${tutorId}`).then((res) => {
-        if (res.data.modifiedCount > 0) {
-          Swal.fire({
-            title: "Successful!",
-            text: `You have reviewed ${name} Session.`,
-            icon: "success",
-            confirmButtonText: "OK",
-          });
-        }
-      setReview(reviews + 1);
-      console.log(res.data);
-    });
-  };
+
 
   return (
     <div className="container mx-auto px-4 py-8 pt-4">
@@ -85,10 +99,7 @@ const MyBookedTutorials = () => {
               </div>
               <p className="font-medium flex items-center">
                 Reviews:
-                <span className="text-sm ml-2">
-                 
-                  {tutorial.review}
-                </span>
+                <span className="text-sm ml-2">{tutorial.review}</span>
               </p>
             </div>
 
@@ -100,12 +111,16 @@ const MyBookedTutorials = () => {
             {/* Action Button */}
             <div
               onClick={() =>
-                reviewUpdateHandler(tutorial.tutorId, tutorial.review, tutorial.tutorName)
+                reviewUpdateHandler(
+                  tutorial.tutorId,
+                  tutorial.review,
+                  tutorial.tutorName
+                )
               }
               className="p-4 border-t flex justify-start lg:justify-center"
             >
               <button className="btn btn-sm h-10 rounded-none px-4 py-2 bg-gradient-to-r from-primary to-blue-600 text-white font-bold  hover:from-blue-600 hover:to-primary transition-color duration-500">
-                View Details
+                Review
               </button>
             </div>
           </div>

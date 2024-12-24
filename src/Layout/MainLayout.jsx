@@ -9,13 +9,13 @@ const MainLayout = () => {
 
   return (
     <div
-      className="max-w-[2560px] mx-auto min-h-[calc(100vh - 244px)] relative overflow-y-scroll"
+      className="max-w-[2560px] mx-auto min-h-[calc(100vh - 244px)] relative"
       data-theme={isDark ? "dark" : "light"}
     >
       <nav className="px-4 fixed top-0 left-0 w-full z-50 backdrop-blur-sm bg-white/80">
         <Navbar></Navbar>
       </nav>
-      <div className="mt-[60px] lg:mt-[70px]">
+      <div className="pt-[60px] lg:pt-[64px]">
       <Outlet></Outlet>
       </div>
       <Footer></Footer>
