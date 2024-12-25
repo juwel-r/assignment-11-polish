@@ -30,8 +30,7 @@ const router = createBrowserRouter([
             },
             {
                 element:<FindTutors></FindTutors>,
-                path:'/find-tutors',
-                loader:()=>fetch("http://localhost:5000/tutorials")
+                path:'/find-tutors'
             },
             {
                 element:<TutorByCategories></TutorByCategories>,

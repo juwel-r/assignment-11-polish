@@ -1,10 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useLoaderData } from "react-router-dom";
 import TutorCard from "../components/TutorCard";
+import axios from "axios";
 
 const FindTutors = () => {
-  const tutors = useLoaderData();
-  console.log(tutors);
+  const [tutors, setTutors] = useState([]);
+  const [searchValue, setSearchValue] = useState("");
+  useEffect(() => {
+    axios
+      .get(`http://localhost:5000/tutorials/search?value=${searchValue}`) // If email is optional, just this.
+      .then((res) => {
+        console.log(res.data);
+        setTutors(res.data);
+      })
+      .catch((error) => {
+        console.error("Error fetching tutorials:", error);
+      });
+  }, [searchValue]);
+  
 
   return (
     <div className="md:w-11/12 mx-auto w-[95%]">
@@ -18,6 +31,15 @@ const FindTutors = () => {
           experienced educators to enhance your learning journey. Book your
           session today and take the first step toward mastering a new language!
         </p>
+      </div>
+      <div>
+        <form>
+          <input
+            onChange={(e) => setSearchValue(e.target.value)}
+            type="text"
+            name="search"
+          />
+        </form>
       </div>
       <div className="grid lg:grid-cols-2 gap-6 lg:mt-10">
         {Array.isArray(tutors) && tutors.length > 0 ? (
