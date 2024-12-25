@@ -70,7 +70,7 @@ const MyTutorials = () => {
   };
 
   const handleUpdate = (e) => {
-    setUpdatedData(false); 
+    setUpdatedData(false);
     e.preventDefault();
     console.log(currentTutorial);
     const updatedData = { title: "Updated Tutorial Title" }; // Example
@@ -85,7 +85,7 @@ const MyTutorials = () => {
             showConfirmButton: false,
             timer: 1500,
           });
-          setUpdatedData(true); 
+          setUpdatedData(true);
         }
         setIsModalOpen(false);
       })
@@ -117,10 +117,7 @@ const MyTutorials = () => {
 
   return (
     <div className="p-8 bg-gradient-to-br  to-gray-200  md:w-11/12 mx-auto w-[95%]">
-      <h2
-        className="text-4xl font-extrabold text-center mb-12 tracking-wide"
-        style={{ color: "#6A78FF" }}
-      >
+      <h2 className="text-4xl font-extrabold text-center mb-12 tracking-wide text-primary">
         My Tutorials
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
@@ -128,7 +125,7 @@ const MyTutorials = () => {
           myTutorials.map((tutorial) => (
             <div
               key={tutorial._id}
-              className="relative shadow-xl rounded-xl transform hover:-rotate-1 hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
+              className="relative shadow-xl rounded-xl transform hover:-rotate-[0.2deg] hover:bg-white hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
               style={{ perspective: "1000px" }}
             >
               {/* Image Section */}
@@ -143,19 +140,18 @@ const MyTutorials = () => {
               {/* Content Section */}
               <div className="p-6 relative z-10 flex-grow">
                 <h5
-                  className="text-lg font-extrabold text-gray-800 truncate"
+                  className="text-xl font-extrabold text-primary"
                   title={tutorial.name}
-                  style={{ color: "#6A78FF" }}
                 >
                   {tutorial.name}
                 </h5>
-                <p className="text-sm text-gray-600 mt-4">
+                <p className="text-sm text-gray-500 mt-4">
                   <span className="font-semibold">Category:</span>{" "}
-                  {tutorial.category}
+                  <span className="text-primary">{tutorial.category}</span>
                 </p>
                 <p className="text-sm text-gray-500 mt-2">
                   <span className="font-semibold">Price:</span> $
-                  {tutorial.price}
+                  <span className="text-primary">{tutorial.price}</span>
                 </p>
                 <p className="text-sm text-gray-500 mt-4">
                   {tutorial.description}
@@ -165,7 +161,8 @@ const MyTutorials = () => {
               {/* Footer Section */}
               <div className="p-4 flex justify-between items-end">
                 <div className="font-bold text-sm ">
-                  Reviews: {tutorial.review}
+                  Reviews:{" "}
+                  <span className="text-primary">{tutorial.review}</span>
                 </div>
                 <div className="flex space-x-2">
                   <button

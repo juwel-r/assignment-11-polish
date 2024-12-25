@@ -70,114 +70,143 @@ const AddTutorial = () => {
   ];
 
   return (
-    <div className="hero bg-base-200">
-      <div className="hero-content flex-col md:flex-row md:gap-16">
-        <div className="flex-1">
-          <Lottie animationData={readingAnimation}></Lottie>
-        </div>
-        <form
-          onSubmit={submitHandler}
-          className="flex-1 content-end w-full flex flex-col gap-2 mx-auto text-center"
-        >
-          <h1 className="text-center font-bold text-2xl md:text-3xl lg:text-3xl my-8">
-            Add New Tutorial
-          </h1>
-          {/* Name */}
-          <div className="w-full">
-            <input
-              value={userInfo.displayName}
-              type="text"
-              name="name"
-              readOnly
-              placeholder="Name"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
-          {/* Email */}
-          <div className="w-full">
-            <input
-              value={userInfo.email}
-              type="email"
-              name="email"
-              readOnly
-              placeholder="Email"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
-          {/* Photo URL */}
-          <div className="w-full">
-            <input
-              type="url"
-              name="photoURL"
-              required
-              placeholder="Photo URL"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
-          <div className="lg:flex gap-2 lg:px-2">
-            {/* Category */}
-            <div className="w-full">
-              <select
-                className="rounded-none input input-bordered w-full max-w-xl"
-                name="category"
-                required
-                value={category}
-                onChange={(e) => setCategory(e.target.value)}
-              >
-                <option value="" disabled>
-                  Select Language
-                </option>
-                {categories.map((category) => (
-                  <option key={category.id} value={category.categoryName}>
-                    {category.categoryName}
-                  </option>
-                ))}
-              </select>
-            </div>
-            {/* Price */}
-            <div className="w-full mt-2 lg:mt-0">
-              <input
-                type="number"
-                step="any"
-                name="price"
-                required
-                placeholder="Price"
-                className="rounded-none input input-bordered w-full max-w-xl"
-              />
-            </div>
-          </div>
-          {/* Description */}
-          <div className="w-full">
-            <input
-              type="text"
-              name="description"
-              required
-              placeholder="Description"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
-          {/* Review */}
-          <div className="w-full">
-            <input
-              defaultValue="0"
-              type="number"
-              step="any"
-              name="review"
-              required
-              placeholder="Review"
-              className="rounded-none input input-bordered w-full max-w-xl"
-            />
-          </div>
-          <div className="w-full text-center">
-            <input
-              type="submit"
-              value="Submit"
-              className="rounded-none input input-bordered w-full max-w-xs"
-            />
-          </div>
-        </form>
-      </div>
+<div className="min-h-screen p-4 md:pt-8 flex items-start justify-center bg-gradient-to-br from-gray-100 to-gray-300">
+  <div className="max-w-7xl w-full bg-white rounded-xl shadow-lg p-6 md:p-12 flex flex-col md:flex-row gap-8">
+    {/* Left Section: Animation */}
+    <div className="w-full md:w-1/2 flex items-center justify-center">
+      <Lottie animationData={readingAnimation} className="w-full max-w-md" />
     </div>
+
+    {/* Right Section: Form */}
+    <form
+      onSubmit={submitHandler}
+      className="w-full md:w-1/2 flex flex-col gap-6"
+    >
+      <h1 className="text-2xl md:text-3xl font-extrabold text-center text-primary">
+        Add New Tutorial
+      </h1>
+
+      {/* Name */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="name" className="text-sm text-gray-600">
+          Name
+        </label>
+        <input
+          value={userInfo.displayName}  
+          type="text"
+          name="name"
+          readOnly
+          className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
+
+      {/* Email */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="email" className="text-sm text-gray-600">
+          Email
+        </label>
+        <input
+          value={userInfo.email}
+          type="email"
+          name="email"
+          readOnly
+          className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
+
+      {/* Photo URL */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="photoURL" className="text-sm text-gray-600">
+          Photo URL
+        </label>
+        <input
+          type="url"
+          name="photoURL"
+          required
+          placeholder="https://example.com/photo.jpg"
+          className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
+
+      <div className="flex flex-col lg:flex-row gap-4">
+        {/* Category */}
+        <div className="flex flex-col gap-1 w-full">
+          <label htmlFor="category" className="text-sm text-gray-600">
+            Category
+          </label>
+          <select
+            name="category"
+            required
+            value={category}
+            onChange={(e) => setCategory(e.target.value)}
+            className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+          >
+            <option value="" disabled>
+              Select Language
+            </option>
+            {categories.map((category) => (
+              <option key={category.id} value={category.categoryName}>
+                {category.categoryName}
+              </option>
+            ))}
+          </select>
+        </div>
+
+        {/* Price */}
+        <div className="flex flex-col gap-1 w-full">
+          <label htmlFor="price" className="text-sm text-gray-600">
+            Price
+          </label>
+          <input
+            type="number"
+            step="any"
+            name="price"
+            required
+            placeholder="Price"
+            className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+          />
+        </div>
+      </div>
+
+      {/* Description */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="description" className="text-sm text-gray-600">
+          Description
+        </label>
+        <textarea
+          name="description"
+          required
+          placeholder="Provide a brief description..."
+          className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full h-28 resize-none"
+        ></textarea>
+      </div>
+
+      {/* Review */}
+      <div className="flex flex-col gap-1">
+        <label htmlFor="review" className="text-sm text-gray-600">
+          Review
+        </label>
+        <input
+          defaultValue="0"
+          type="number"
+          step="any"
+          name="review"
+          readOnly
+          className="rounded-lg border border-gray-300 px-4 py-2 focus:outline-none focus:ring-2 focus:ring-blue-500 w-full"
+        />
+      </div>
+
+      {/* Submit Button */}
+      <button
+        type="submit"
+        className="mt-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+</div>
+
   );
 };
 

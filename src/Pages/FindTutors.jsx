@@ -1,11 +1,10 @@
-import axios from "axios";
 import React, { useEffect } from "react";
 import { useLoaderData } from "react-router-dom";
 import TutorCard from "../components/TutorCard";
 
 const FindTutors = () => {
   const tutors = useLoaderData();
-  console.log();
+  console.log(tutors);
 
   return (
     <div className="md:w-11/12 mx-auto w-[95%]">

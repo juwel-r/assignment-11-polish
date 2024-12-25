@@ -14,3 +14,90 @@ body{
 /* html{
     overflow-y: scroll;
 } */
+
+
+/* Sweet Alert Btn */
+/* Base button styles */
+.swal-button {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #fff;
+    border-radius: 0.5rem;
+    text-align: center;
+    text-decoration: none;
+    transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s;
+    cursor: pointer;
+    outline: none;
+    border: none;
+  }
+  
+  /* Confirm (Success) Button */
+  .swal-button-confirm {
+    background: linear-gradient(to right, #6a78ff, #02b4bd);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .swal-button-confirm:hover {
+    background: linear-gradient(to right, #00f2fe, #6a78ff);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .swal-button-confirm:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Cancel Button */
+  .swal-button-cancel {
+    background: linear-gradient(to right, #f97316, #fb923c);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .swal-button-cancel:hover {
+    background: linear-gradient(to right, #fb923c, #f97316);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .swal-button-cancel:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Error Button */
+  .swal-button-error {
+    background: linear-gradient(to right, #ef4444, #f87171);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  }
+  
+  .swal-button-error:hover {
+    background: linear-gradient(to right, #f87171, #ef4444);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .swal-button-error:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  /* Warning Button */
+.swal-button-warning {
+    background: linear-gradient(to right, #facc15, #fbbf24);
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    color: #000; /* Darker text for better contrast */
+  }
+  
+  .swal-button-warning:hover {
+    background: linear-gradient(to right, #fbbf24, #facc15);
+    transform: scale(1.05);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+  }
+  
+  .swal-button-warning:active {
+    transform: scale(0.95);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  
