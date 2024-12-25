@@ -23,9 +23,9 @@ const TutorCard = ({ tutor }) => {
   </section>
 
   {/* Top Section */}
-  <section className="flex flex-col sm:justify-between md:flex-row md:justify-between mt-4 md:mt-0 pt-4">
+  <section className="flex flex-col sm:justify-between md:flex-row md:justify-between mt-4 md:mt-0 md:pt-4">
     <div className="flex flex-col md:w-[70%]">
-      <h3 className="text-xl md:text-2xl font-semibold text-gray-800 hover:text-primary transition duration-200">
+      <h3 className="text-xl md:text-2xl font-semibold  hover:text-primary transition duration-200">
         {name}
       </h3>
       <div className="flex items-center gap-2 mt-2 text-sm text-primary font-medium">
@@ -38,19 +38,19 @@ const TutorCard = ({ tutor }) => {
       {/* Review */}
       <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
         <span className="font-semibold text-primary">{review}</span>
-        <p className="md:text-sm font-normal text-gray-500">Reviews</p>
+        <p className="md:text-sm font-normal text-gray-500">Reviews:</p>
       </div>
 
       {/* Price */}
       <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
         <span className="font-semibold text-primary">${price}</span>
-        <p className="md:text-sm font-normal text-gray-500">Price</p>
+        <p className="md:text-sm font-normal text-gray-500">Price:</p>
       </div>
     </div>
   </section>
 
   {/* Description */}
-  <p className="mt-4 text-gray-600 text-sm leading-relaxed col-span-2 md:col-span-1">
+  <p className="mt-4 text-gray-500 text-sm leading-relaxed col-span-2 md:col-span-1">
     {description}
   </p>
 
