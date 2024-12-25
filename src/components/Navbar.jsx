@@ -9,11 +9,13 @@ import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
 import logo from "../assets/edu-mate-logo.png";
 import Swal from "sweetalert2";
+import { Tooltip } from "react-tooltip";
 
 const Navbar = () => {
   const { userInfo, signOutUser } = useContext(AuthContext);
   const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
+  const [profileMenu, setProfileMenu] = useState(false);
   const email1stLetter = userInfo && userInfo.email.charAt(0).toUpperCase();
   const menus = (
     <>
@@ -93,9 +95,7 @@ const Navbar = () => {
       </div>
       {/* Logo */}
       <Link to="/" className="text-2xl lg:text-3xl text-nowrap px-2 min-w-fit">
-        
-          <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
-      
+        <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
       </Link>
 
       {/* Menu */}
@@ -133,7 +133,13 @@ const Navbar = () => {
           <div className="avatar online placeholder">
             <div className="text-neutral-content w-10 rounded-full">
               {userInfo?.photoURL ? (
-                <img src={userInfo.photoURL} alt="" />
+                <img
+                  onClick={() => setProfileMenu(!profileMenu)}
+                  src={userInfo.photoURL}
+                  alt=""
+                  data-tooltip-id="my-tooltip"
+                  data-tooltip-content={userInfo.displayName}
+                />
               ) : (
                 <h1 className="text-2xl font-bold">{email1stLetter}</h1>
               )}
@@ -143,8 +149,8 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center">
           {userInfo ? (
-            <button
-              className="btn btn-outline btn-sm rounded-none"
+          <button
+              className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
               onClick={logOut}
             >
               Logout
@@ -166,10 +172,27 @@ const Navbar = () => {
             </>
           )}
         </div>
-
+        <Tooltip id="my-tooltip" />
         {/* theme controller */}
         <ThemeController></ThemeController>
       </section>
+      {/* {profileMenu ? (
+
+      ) : (
+        ""
+      )} */}
+              <div className={`flex flex-col items-center gap-2 absolute top-20 right-0 bg-white p-2 shadow-md max-w-80 min-w-52 rounded-md ${profileMenu ? "opacity-100" : "opacity-0"} transition-all duration-300 ease-in-out transform`}>
+          <img className="w-20 rounded-full" src={userInfo.photoURL} />
+          <h1 className="text-primary font-bold text-xl">{userInfo.displayName}</h1>
+          <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300">See Profile</button>
+
+          <button
+              className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
+              onClick={logOut}
+            >
+              Logout
+            </button>
+        </div>
     </nav>
   );
 };
