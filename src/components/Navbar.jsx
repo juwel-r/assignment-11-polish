@@ -39,6 +39,7 @@ const Navbar = () => {
 
   //Log Out
   const logOut = () => {
+    setProfileMenu(false);
     Swal.fire({
       title: "Do you really want to Log out?",
       // text: "You won't be able to revert this!",
@@ -136,7 +137,7 @@ const Navbar = () => {
                 <img
                   onClick={() => setProfileMenu(!profileMenu)}
                   src={userInfo.photoURL}
-                  alt=""
+                  alt={userInfo.displayName}
                   data-tooltip-id="my-tooltip"
                   data-tooltip-content={userInfo.displayName}
                 />
@@ -149,7 +150,7 @@ const Navbar = () => {
 
         <div className="hidden lg:flex items-center">
           {userInfo ? (
-          <button
+            <button
               className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
               onClick={logOut}
             >
@@ -181,18 +182,45 @@ const Navbar = () => {
       ) : (
         ""
       )} */}
-              <div className={`flex flex-col items-center gap-2 absolute top-20 right-0 bg-white p-2 shadow-md max-w-80 min-w-52 rounded-md ${profileMenu ? "opacity-100" : "opacity-0"} transition-all duration-300 ease-in-out transform`}>
-          <img className="w-20 rounded-full" src={userInfo.photoURL} />
-          <h1 className="text-primary font-bold text-xl">{userInfo.displayName}</h1>
-          <button className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300">See Profile</button>
+      {userInfo && (
+        <div
+          className={`flex flex-col items-center gap-2 absolute top-14 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md ${
+            profileMenu ? "opacity-100" : "opacity-0"
+          } transition-all duration-300 ease-in-out transform`}
+        >
+          <div className="w-20 h-20 p-1 border border-primary rounded-full">
+            <img
+              className=" rounded-full"
+              src={userInfo.photoURL}
+              alt={userInfo.displayName}
+            />
+          </div>
+          <h1 className="text-primary font-bold text-xl">
+            {userInfo.displayName}
+          </h1>
+          {profileMenu ? (
+            <>
+              <Link to="profile">
+                <button
+                  onClick={() => setProfileMenu(false)}
+                  className="px-4 py-2 bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300"
+                >
+                  See Profile
+                </button>
+              </Link>
 
-          <button
-              className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
-              onClick={logOut}
-            >
-              Logout
-            </button>
+              <button
+                className="px-4 py-2 bg-gradient-to-r from-pink-500 to-red-500 text-white text-xs font-semibold rounded-full shadow-lg hover:from-red-600 hover:to-pink-600 transform transition-all duration-300"
+                onClick={logOut}
+              >
+                Logout
+              </button>
+            </>
+          ) : (
+            ""
+          )}
         </div>
+      )}
     </nav>
   );
 };

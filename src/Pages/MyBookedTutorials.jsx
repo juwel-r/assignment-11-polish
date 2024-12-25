@@ -8,7 +8,7 @@ const MyBookedTutorials = () => {
   const { userInfo } = useAuth();
   const [bookedTutorials, setBookedTutorials] = useState([]);
   const [review, setReview] = useState(0);
-console.log(bookedTutorials)
+  console.log(bookedTutorials);
   useEffect(() => {
     axios
       .get(`http://localhost:5000/booked-tutorials?email=${userInfo.email}`)
@@ -58,83 +58,63 @@ console.log(bookedTutorials)
   }
 
   return (
-<div className="container mx-auto px-6 py-12">
-  <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
-    You Have Booked {bookedTutorials.length} Sessions
-  </h1>
-  <p className="text-center text-lg text-gray-600 mb-8">
-    Review and provide feedback for your tutors.
-  </p>
-  <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-    {bookedTutorials.map((tutorial) => (
-      <div
-        key={tutorial._id}
-        className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:rotate-[0.5deg] hover:scale-[1.01] hover:shadow-xl"
-      >
-        {/* Image Section */ console.log(tutorial)}
-        <div className="relative group">
-          <img
-            src={tutorial.tutorPhoto}
-            alt="Tutor"
-            className="w-full h-64 object-cover group-hover:opacity-90 transition-all duration-500"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
-          {tutorial.tutorName ? (
-          <div className="absolute bottom-6 left-6 text-white">
-            <h5 className="text-xl md:text-2xl font-bold">{tutorial?.tutorName}</h5>
-            <h5 className="text-lg">{tutorial.tutorCategory}</h5>
-          </div>
-                ) : (
-                  <p className="absolute bottom-2 left-6 text-2xl text-red-600 font-bold pr-2">
-                    This Session is Deleted by the Tutor
-                  </p>
-                )}
+    <div className="container mx-auto px-6 py-12">
+      <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
+        You Have Booked {bookedTutorials.length} Sessions
+      </h1>
+      <p className="text-center text-lg text-gray-600 mb-8">
+        Review and provide feedback for your tutors.
+      </p>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {bookedTutorials.map((tutorial) => (
+          <div
+            key={tutorial._id}
+            className="hover:*:bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:rotate-[0.5deg] hover:scale-[1.01] hover:shadow-xl"
+          >
+            <div className="max-w-lg mx-auto p-6 shadow-md border border-primary/50">
+              <div className="flex flex-col items-center pt-4">
+                <img
+                  src={tutorial.tutorPhoto}
+                  alt="User Avatar"
+                  className="w-24 h-24 rounded-full shadow-md mb-4"
+                />
+                <>
+                  {tutorial.tutorName ? (
+                    <h1 className="text-2xl font-semibold">
+                      {tutorial.tutorName}
+                    </h1>
+                  ) : (
+                    <p className="left-6 text-xl text-red-600 pr-2">
+                      This Tutorial hss Deleted!
+                    </p>
+                  )}
 
-
-
-        </div>
-
-        {/* Content Section */}
-        <div className="p-6">
-          <div className="flex justify-between items-center mb-4">
-            <p className="text-gray-800 font-semibold text-lg">
-              ${tutorial.tutorPrice}
-            </p>
-            <div className="flex items-center gap-2">
-              Reviews:
-              <span className="font-semibold">{tutorial.review}</span>
+                  <p className="text-gray-500">{tutorial.tutorCategory}</p>
+                  <div className="flex items-center gap-2">
+                    Reviews:
+                    <span className="font-semibold">{tutorial.review}</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    Price:
+                    <span className="font-semibold">
+                      ${tutorial.tutorPrice}
+                    </span>
+                  </div>
+                  <button
+                    className="green-button mt-4"
+                    onClick={() =>
+                      reviewUpdateHandler(tutorial.tutorId, tutorial.review)
+                    }
+                  >
+                    Review
+                  </button>
+                </>
+              </div>
             </div>
           </div>
-          <p className="text-sm text-gray-600 mb-6">
-            {tutorial.description || "No description available."}
-          </p>
-        </div>
-
-        {/* Floating Badge */}
-        <div className="absolute top-4 right-4 bg-primary text-white text-xs px-3 py-1 rounded-full shadow-lg">
-          Booked
-        </div>
-
-        {/* Action Button */}
-        <div
-          onClick={() =>
-            reviewUpdateHandler(
-              tutorial.tutorId,
-              tutorial.review
-            )
-          }
-          className="p-4 border-t flex justify-center"
-        >
-          <button className="px-6 py-2 bg-gradient-to-r from-primary to-blue-600 text-white font-semibold rounded-lg shadow-md hover:from-blue-600 hover:to-primary transition-all duration-500">
-            Review
-          </button>
-        </div>
+        ))}
       </div>
-    ))}
-  </div>
-</div>
-
-
+    </div>
   );
 };
 

@@ -10,6 +10,7 @@ import TutorDetails from "../Pages/TutorDetails";
 import MyTutorials from "../Pages/MyTutorials";
 import MyBookedTutorials from "../Pages/MyBookedTutorials";
 import TutorByCategories from "../Pages/TutorByCategories";
+import UserProfile from "../Pages/UserProfile";
 
 const router = createBrowserRouter([
     {
@@ -52,6 +53,10 @@ const router = createBrowserRouter([
             {
                 element:<PrivateRoute><MyBookedTutorials></MyBookedTutorials></PrivateRoute>,
                 path:'/my-booked-tutorials'
+            }
+,            {
+                element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
+                path:'/profile'
             }
         ]
     }
