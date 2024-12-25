@@ -34,13 +34,13 @@ const Slider = () => {
       description: "Value for Quality Education",
       description2: "Learn without breaking the bank.",
     },
-    {
-      id: 4,
-      cover: slide4,
-      title: "Interactive Sessions",
-      description: "Engage with Dynamic Tutors",
-      description2: "Boost your skills with personalized lessons.",
-    },
+    // {
+    //   id: 4,
+    //   cover: slide4,
+    //   title: "Interactive Sessions",
+    //   description: "Engage with Dynamic Tutors",
+    //   description2: "Boost your skills with personalized lessons.",
+    // },
   ];
   
   return (

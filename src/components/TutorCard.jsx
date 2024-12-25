@@ -58,7 +58,7 @@ const TutorCard = ({ tutor }) => {
   <div className="col-span-2 md:col-span-1 md:place-self-end mt-6">
     <Link
       to={`/tutor/${_id}`}
-      className="px-4 py-2 bg-primary text-white text-sm font-medium rounded-lg shadow-md hover:bg-primary/90 transition duration-200 transform hover:scale-105 hover:shadow-xl"
+      className="text-sm font-medium green-button"
     >
       View Details
     </Link>

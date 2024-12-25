@@ -4,6 +4,7 @@ import Lottie from "lottie-react";
 import useAuth from "../customHooks/useAuth";
 import axios from "axios";
 import Swal from "sweetalert2";
+import LoadingSpin from "../components/LoadingSpin";
 
 const AddTutorial = () => {
   const { userInfo } = useAuth();
@@ -72,17 +73,20 @@ const AddTutorial = () => {
   return (
 <div className="min-h-screen p-4 md:pt-8 flex items-start justify-center bg-gradient-to-br from-gray-100 to-gray-300">
   <div className="max-w-7xl w-full bg-white rounded-xl shadow-lg p-6 md:p-12 flex flex-col md:flex-row gap-8">
-    {/* Left Section: Animation */}
+  <h1 className="md:hidden text-2xl md:text-3xl font-extrabold text-center text-primary">
+        Add New Tutorial
+      </h1>
+    {/* Animation */}
     <div className="w-full md:w-1/2 flex items-center justify-center">
       <Lottie animationData={readingAnimation} className="w-full max-w-md" />
     </div>
 
-    {/* Right Section: Form */}
+    {/* Form */}
     <form
       onSubmit={submitHandler}
-      className="w-full md:w-1/2 flex flex-col gap-6"
+      className="w-full md:w-1/2 flex flex-col gap-4"
     >
-      <h1 className="text-2xl md:text-3xl font-extrabold text-center text-primary">
+      <h1 className="hidden md:block text-2xl md:text-3xl font-extrabold text-center text-primary">
         Add New Tutorial
       </h1>
 

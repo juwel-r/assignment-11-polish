@@ -3,6 +3,7 @@ import TutorCard from "../components/TutorCard";
 import axios from "axios";
 import { FaSearch } from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
+import LoadingSpin from "../components/LoadingSpin";
 
 const FindTutors = () => {
   const [tutors, setTutors] = useState([]);
@@ -45,6 +46,9 @@ const FindTutors = () => {
        <button> <IoIosSearch className="text-2xl mx-2 " /></button>
         </form>
       </div>
+      {
+        !tutors.length && <LoadingSpin />
+      }
       <div className="grid lg:grid-cols-2 gap-6 lg:mt-10">
         {Array.isArray(tutors) && tutors.length > 0 ? (
           tutors.map((tutor) => (

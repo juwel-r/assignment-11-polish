@@ -58,8 +58,8 @@ const MyBookedTutorials = () => {
   }
 
   return (
-    <div className="container mx-auto px-6 py-12">
-      <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
+    <div className="container mx-auto px-6 py-6">
+      <h1 className="text-2xl md:text-3xl font-bold text-center mb-3 text-primary ">
         You Have Booked {bookedTutorials.length} Sessions
       </h1>
       <p className="text-center text-lg text-gray-600 mb-8">
@@ -69,15 +69,22 @@ const MyBookedTutorials = () => {
         {bookedTutorials.map((tutorial) => (
           <div
             key={tutorial._id}
-            className="hover:*:bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:rotate-[0.5deg] hover:scale-[1.01] hover:shadow-xl"
+            className={` border-gray-100 rounded-2xl overflow-hidden transform transition-all duration-300 ${tutorial.tutorName? 'shadow-sm border hover:rotate-[0.5deg] hover:scale-[1.001] hover:shadow-xl ': 'opacity-40 bg-gray-50'}`}
           >
-            <div className="max-w-lg mx-auto p-6 shadow-md border border-primary/50">
-              <div className="flex flex-col items-center pt-4">
-                <img
-                  src={tutorial.tutorPhoto}
-                  alt="User Avatar"
-                  className="w-24 h-24 rounded-full shadow-md mb-4"
-                />
+            <div className="max-w-lg mx-auto p-6 shadow-md">
+              <div className="flex flex-col items-center relative">
+                <div className="relative ">
+                  <img
+                    src={tutorial.tutorPhoto}
+                    alt="User Avatar"
+                    className="w-64 h-64 object-cover rounded-full shadow-lg shadow-primary mb-4"
+                  />
+                  <div className="bg-gradient-to-bl from-blue-500 to-purple-500/60 absolute top-0 right-0 rounded-full h-20 w-20 flex items-center justify-center shadow-md shadow-primary/90">
+                    <p className="text-center text-white text-sm text-wrap">
+                      {tutorial.tutorCategory}
+                    </p>
+                  </div>
+                </div>
                 <>
                   {tutorial.tutorName ? (
                     <h1 className="text-2xl font-semibold">
@@ -85,23 +92,23 @@ const MyBookedTutorials = () => {
                     </h1>
                   ) : (
                     <p className="left-6 text-xl text-red-600 pr-2">
-                      This Tutorial hss Deleted!
+                      This Tutorial has Deleted!
                     </p>
                   )}
-
-                  <p className="text-gray-500">{tutorial.tutorCategory}</p>
-                  <div className="flex items-center gap-2">
-                    Reviews:
-                    <span className="font-semibold">{tutorial.review}</span>
-                  </div>
                   <div className="flex items-center gap-2">
                     Price:
                     <span className="font-semibold">
                       ${tutorial.tutorPrice}
                     </span>
                   </div>
+                  <div className="flex items-center gap-2">
+                    Reviews:
+                    <span className="font-semibold">{tutorial.review}</span>
+                  </div>
+
                   <button
-                    className="green-button mt-4"
+                    disabled={tutorial.tutorName ? false : true}
+                    className="green-button mt-4 text-sm"
                     onClick={() =>
                       reviewUpdateHandler(tutorial.tutorId, tutorial.review)
                     }

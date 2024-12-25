@@ -59,7 +59,7 @@ const TutorDetails = () => {
           <p className="text-2xl md:text-3xl font-semibold mt-24 md:mt-8">
             {name}
           </p>
-          <p className="text-white font-normal text-nowrap text-sm bg-primary rounded-full  mt-2 px-4 py-1 w-fit flex items-center gap-2 ">
+          <p className="text-white text-nowrap text-sm font-light bg-primary rounded-full  mt-2 px-4 py-1 w-fit flex items-center gap-2">
             <FaGraduationCap />
             {category}
           </p>
@@ -90,7 +90,7 @@ const TutorDetails = () => {
           </div>
           <button
             onClick={bookedHandler}
-            className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none my-4 "
+            className="btn btn-ghost text-primary text-nowrap btn-outline btn-sm rounded-none my-4 hover:bg-primary hover:text-white hover:border-primary"
           >
             Book a Session
           </button>
