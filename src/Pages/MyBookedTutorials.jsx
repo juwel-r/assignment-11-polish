@@ -8,7 +8,7 @@ const MyBookedTutorials = () => {
   const { userInfo } = useAuth();
   const [bookedTutorials, setBookedTutorials] = useState([]);
   const [review, setReview] = useState(0);
-
+console.log(bookedTutorials)
   useEffect(() => {
     axios
       .get(`http://localhost:5000/booked-tutorials?email=${userInfo.email}`)
@@ -17,7 +17,7 @@ const MyBookedTutorials = () => {
       });
   }, [review]);
 
-  const reviewUpdateHandler = (tutorId, reviews, name) => {
+  const reviewUpdateHandler = (tutorId, reviews) => {
     axios
       .put(`http://localhost:5000/tutorials/${tutorId}`)
       .then((res) => {
@@ -59,7 +59,7 @@ const MyBookedTutorials = () => {
 
   return (
 <div className="container mx-auto px-6 py-12">
-  <h1 className="text-3xl font-bold text-center text-gray-900 mb-6">
+  <h1 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-6">
     You Have Booked {bookedTutorials.length} Sessions
   </h1>
   <p className="text-center text-lg text-gray-600 mb-8">
@@ -71,7 +71,7 @@ const MyBookedTutorials = () => {
         key={tutorial._id}
         className="bg-white shadow-lg rounded-2xl overflow-hidden transform transition-all duration-300 hover:rotate-[0.5deg] hover:scale-[1.01] hover:shadow-xl"
       >
-        {/* Image Section */}
+        {/* Image Section */ console.log(tutorial)}
         <div className="relative group">
           <img
             src={tutorial.tutorPhoto}
@@ -79,10 +79,19 @@ const MyBookedTutorials = () => {
             className="w-full h-64 object-cover group-hover:opacity-90 transition-all duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60 group-hover:opacity-80 transition-opacity duration-300"></div>
+          {tutorial.tutorName ? (
           <div className="absolute bottom-6 left-6 text-white">
-            <h5 className="text-2xl font-bold">{tutorial.tutorName}</h5>
+            <h5 className="text-xl md:text-2xl font-bold">{tutorial?.tutorName}</h5>
             <h5 className="text-lg">{tutorial.tutorCategory}</h5>
           </div>
+                ) : (
+                  <p className="absolute bottom-2 left-6 text-2xl text-red-600 font-bold pr-2">
+                    This Session is Deleted by the Tutor
+                  </p>
+                )}
+
+
+
         </div>
 
         {/* Content Section */}
@@ -91,8 +100,8 @@ const MyBookedTutorials = () => {
             <p className="text-gray-800 font-semibold text-lg">
               ${tutorial.tutorPrice}
             </p>
-            <div className="flex items-center gap-2 text-yellow-500">
-              <MdStar className="text-xl" />
+            <div className="flex items-center gap-2">
+              Reviews:
               <span className="font-semibold">{tutorial.review}</span>
             </div>
           </div>
@@ -111,8 +120,7 @@ const MyBookedTutorials = () => {
           onClick={() =>
             reviewUpdateHandler(
               tutorial.tutorId,
-              tutorial.review,
-              tutorial.tutorName
+              tutorial.review
             )
           }
           className="p-4 border-t flex justify-center"

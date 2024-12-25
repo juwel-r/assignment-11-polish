@@ -8,6 +8,7 @@ const MyTutorials = () => {
   const [myTutorials, setMyTutorials] = useState([]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTutorial, setCurrentTutorial] = useState(null);
+  const [updatedData, setUpdatedData] = useState(false);
 
   useEffect(() => {
     axios
@@ -16,29 +17,31 @@ const MyTutorials = () => {
         setMyTutorials(res.data);
       })
       .catch((err) => console.error(err));
-  }, [userInfo.email]);
+  }, [userInfo.email, updatedData]);
 
   const handleDelete = (id) => {
-    axios
-      .delete(`http://localhost:5000/tutorials/${id}`)
-      .then(() => {
-        setMyTutorials(myTutorials.filter((tutorial) => tutorial._id !== id));
-        Swal.fire({
-          title: "Are you sure?",
-          text: "You won't be able to revert this!",
-          icon: "warning",
-          showCancelButton: true,
-          confirmButtonColor: "#3085d6",
-          cancelButtonColor: "#d33",
-          confirmButtonText: "Yes, delete it!",
-          customClass: {
-            confirmButton:
-              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
-            cancelButton:
-              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-600 hover:to-red-600 transform transition-all duration-300",
-          },
-        }).then((result) => {
-          if (result.isConfirmed) {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+      customClass: {
+        confirmButton:
+          "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
+        cancelButton:
+          "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-red-500 to-pink-500 hover:from-pink-600 hover:to-red-600 transform transition-all duration-300",
+      },
+    }).then((result) => {
+      if (result.isConfirmed) {
+        axios
+          .delete(`http://localhost:5000/tutorials/${id}`)
+          .then(() => {
+            setMyTutorials(
+              myTutorials.filter((tutorial) => tutorial._id !== id)
+            );
             Swal.fire({
               title: "Deleted!",
               text: "Your tutorial has been deleted.",
@@ -49,24 +52,25 @@ const MyTutorials = () => {
                   "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
               },
             });
-          }
-        });
-      })
-      .catch((error) => {
-        Swal.fire({
-          title: "Failed To Register!",
-          text: error.code,
-          icon: "error",
-          confirmButtonText: "Try Again",
-          customClass: {
-            confirmButton:
-              "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
-          },
-        });
-      });
+          })
+          .catch((error) => {
+            Swal.fire({
+              title: "Failed To Register!",
+              text: error.code,
+              icon: "error",
+              confirmButtonText: "Try Again",
+              customClass: {
+                confirmButton:
+                  "px-6 py-3 text-white text-sm font-medium rounded-lg shadow-md bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-cyan-600 hover:to-blue-600 transform transition-all duration-300",
+              },
+            });
+          });
+      }
+    });
   };
 
   const handleUpdate = (e) => {
+    setUpdatedData(false); 
     e.preventDefault();
     console.log(currentTutorial);
     const updatedData = { title: "Updated Tutorial Title" }; // Example
@@ -81,6 +85,7 @@ const MyTutorials = () => {
             showConfirmButton: false,
             timer: 1500,
           });
+          setUpdatedData(true); 
         }
         setIsModalOpen(false);
       })

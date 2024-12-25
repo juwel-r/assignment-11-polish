@@ -120,6 +120,7 @@ const AddTutorial = () => {
               <select
                 className="rounded-none input input-bordered w-full max-w-xl"
                 name="category"
+                required
                 value={category}
                 onChange={(e) => setCategory(e.target.value)}
               >
