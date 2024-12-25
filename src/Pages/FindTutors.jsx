@@ -39,10 +39,10 @@ const FindTutors = () => {
             onChange={(e) => setSearchValue(e.target.value)}
             type="text"
             name="search"
-            placeholder="Search for tutors..."
+            placeholder="Search for tutorials..."
             className="w-full p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
           />
-       <button> <IoIosSearch className="text-2xl mx-2" /></button>
+       <button> <IoIosSearch className="text-2xl mx-2 " /></button>
         </form>
       </div>
       <div className="grid lg:grid-cols-2 gap-6 lg:mt-10">
