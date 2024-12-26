@@ -24,7 +24,7 @@ const TutorDetails = () => {
       studentEmail: userInfo.email,
     };
     axios
-      .post("http://localhost:5000/booked-tutorials", bookedData)
+      .post("https://edu-mate-server.vercel.app/booked-tutorials", bookedData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({
@@ -50,7 +50,7 @@ const TutorDetails = () => {
       <div className="relative bg-white w-[95%] lg:w-8/12 md:10/12 mx-auto">
         <section className="absolute rounded-full -top-[20%] md:-top-[30%] left-[20%] md:left-[32%] lg:left-[35%] lg:-top-[35%] z-10 p-1 h-60 w-60  lg:max-w-72 shadow-xl shadow-primary">
           <img
-            className="rounded-full h-full w-full object-cover"  
+            className="rounded-full h-full w-full object-cover"
             src={photoURL}
             alt={name}
           />
@@ -66,11 +66,11 @@ const TutorDetails = () => {
           <p className="text-gray-500 mt-6 font-light">{description}</p>
           <div className="flex items-start gap-6 mt-4">
             <p className="flex items-center font-extrabold">
-            Reviews:&nbsp;<MdStar className="text-orange-500" /> {review} &nbsp;{" "}
-              
+              Reviews:&nbsp;
+              <MdStar className="text-orange-500" /> {review} &nbsp;{" "}
             </p>
             <p>
-              <strong>Fee: ${price}</strong> 
+              <strong>Fee: ${price}</strong>
             </p>
           </div>
           <div className="mt-6">

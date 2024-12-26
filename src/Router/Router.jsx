@@ -13,53 +13,74 @@ import TutorByCategories from "../Pages/TutorByCategories";
 import UserProfile from "../Pages/UserProfile";
 
 const router = createBrowserRouter([
-    {
-        element:<MainLayout></MainLayout>,
-        path:'/',
-        children:[
-            {
-                element:<HomeLayout></HomeLayout>,
-                path:'/'
-            },
-            {
-                element:<Login></Login>,
-                path:'/login'
-            },
-            {
-                element:<Register></Register>,
-                path:'/register'
-            },
-            {
-                element:<FindTutors></FindTutors>,
-                path:'/find-tutors'
-            },
-            {
-                element:<TutorByCategories></TutorByCategories>,
-                path:'/find-tutors/:category'
-            },
-            {
-                element:<PrivateRoute><TutorDetails></TutorDetails></PrivateRoute>,
-                path:'/tutor/:details',
-                loader:({params})=>fetch(`http://localhost:5000/tutor/${params.details}`)
-            },
-            {
-                element:<PrivateRoute><AddTutorial></AddTutorial></PrivateRoute>,
-                path:'/add-tutorial'
-            },
-            {
-                element:<PrivateRoute><MyTutorials></MyTutorials></PrivateRoute>,
-                path:'/my-tutorials'
-            },
-            {
-                element:<PrivateRoute><MyBookedTutorials></MyBookedTutorials></PrivateRoute>,
-                path:'/my-booked-tutorials'
-            }
-,            {
-                element:<PrivateRoute><UserProfile></UserProfile></PrivateRoute>,
-                path:'/profile'
-            }
-        ]
-    }
-])
+  {
+    element: <MainLayout></MainLayout>,
+    path: "/",
+    children: [
+      {
+        element: <HomeLayout></HomeLayout>,
+        path: "/",
+      },
+      {
+        element: <Login></Login>,
+        path: "/login",
+      },
+      {
+        element: <Register></Register>,
+        path: "/register",
+      },
+      {
+        element: <FindTutors></FindTutors>,
+        path: "/find-tutors",
+      },
+      {
+        element: <TutorByCategories></TutorByCategories>,
+        path: "/find-tutors/:category",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <TutorDetails></TutorDetails>
+          </PrivateRoute>
+        ),
+        path: "/tutor/:details",
+        loader: ({ params }) =>
+          fetch(`https://edu-mate-server.vercel.app/tutor/${params.details}`),
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <AddTutorial></AddTutorial>
+          </PrivateRoute>
+        ),
+        path: "/add-tutorial",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <MyTutorials></MyTutorials>
+          </PrivateRoute>
+        ),
+        path: "/my-tutorials",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <MyBookedTutorials></MyBookedTutorials>
+          </PrivateRoute>
+        ),
+        path: "/my-booked-tutorials",
+      },
+      {
+        element: (
+          <PrivateRoute>
+            <UserProfile></UserProfile>
+          </PrivateRoute>
+        ),
+        path: "/profile",
+      },
+    ],
+  },
+]);
 
-export default router
+export default router;

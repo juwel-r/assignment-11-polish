@@ -16,7 +16,12 @@ const MyTutorials = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/tutorials?email=${userInfo.email}`, {withCredentials:true})
+      .get(
+        `https://edu-mate-server.vercel.app/tutorials?email=${userInfo.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setMyTutorials(res.data);
         setFetchingData(false);
@@ -45,7 +50,7 @@ const MyTutorials = () => {
     }).then((result) => {
       if (result.isConfirmed) {
         axios
-          .delete(`http://localhost:5000/tutorials/${id}`)
+          .delete(`https://edu-mate-server.vercel.app/tutorials/${id}`)
           .then(() => {
             setMyTutorials(
               myTutorials.filter((tutorial) => tutorial._id !== id)
@@ -83,7 +88,7 @@ const MyTutorials = () => {
     console.log(currentTutorial);
     const updatedData = { title: "Updated Tutorial Title" }; // Example
     axios
-      .put(`http://localhost:5000/tutorials`, currentTutorial)
+      .put(`https://edu-mate-server.vercel.app/tutorials`, currentTutorial)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({

@@ -14,13 +14,17 @@ const MyBookedTutorials = () => {
   const [fetching, setFetching] = useState(true);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/booked-tutorials?email=juwel.jem@gmail.com`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://edu-mate-server.vercel.app/booked-tutorials?email=${userInfo.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setBookedTutorials(res.data);
         setFetching(false);
-      }).catch(err=>{
+      })
+      .catch((err) => {
         console.log(err);
         setFetching(false);
       });
@@ -28,7 +32,7 @@ const MyBookedTutorials = () => {
 
   const reviewUpdateHandler = (tutorId, reviews) => {
     axios
-      .put(`http://localhost:5000/tutorials/${tutorId}`)
+      .put(`https://edu-mate-server.vercel.app/tutorials/${tutorId}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({
@@ -79,15 +83,17 @@ const MyBookedTutorials = () => {
       ) : bookedTutorials.length < 1 ? (
         <div className="flex flex-col items-center justify-center text-left">
           <h1 className="font-semibold text-lg pt-10 flex items-center gap-2 text-gray-500">
-          <TbMoodCry className="text-4xl" />
+            <TbMoodCry className="text-4xl" />
             Sorry! You haven't Booked Any Session
           </h1>
           <p className=" my-4">
             If you not booked any session please select your tutor and book any
             session.{" "}
           </p>
-          <Link to="/find-tutors" className="text-primary my-6"><button className="green-button text-sm">Book A Session</button></Link>
-          </div>
+          <Link to="/find-tutors" className="text-primary my-6">
+            <button className="green-button text-sm">Book A Session</button>
+          </Link>
+        </div>
       ) : (
         ""
       )}

@@ -47,21 +47,23 @@ const AuthProvider = ({ children }) => {
   //Check user logged in or not
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const user ={ email: currentUser?.email };
+      const user = { email: currentUser?.email };
       setLoading(false);
       setUserInfo(currentUser);
-      console.log(user);
       axios
-          .post("http://localhost:5000/jwt", {email:currentUser?.email}, {
+        .post(
+          "https://edu-mate-server.vercel.app/jwt",
+          { email: currentUser?.email },
+          {
             withCredentials: true,
-          })
-          .then((res) => {
-            console.log(res.data);
-            setLoading(false);
-          });
+          }
+        )
+        .then((res) => {
+          console.log(res.data);
+          setLoading(false);
+        });
 
       console.log(currentUser);
-
     });
 
     return () => {
@@ -103,3 +105,49 @@ const AuthProvider = ({ children }) => {
 };
 
 export default AuthProvider;
+
+// useEffect(() => {
+//   const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+//     setUserInfo(currentUser);
+//     const user = { email: currentUser?.email };
+//     if (currentUser?.email) {
+//       axios
+//         .post(
+//           "https://edu-mate-server.vercel.app/jwt",
+//           { user },
+//           {
+//             withCredentials: true,
+//           }
+//         )
+//         .then((res) => {
+//           setLoading(false);
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//           setLoading(false);
+//         });
+//     } else {
+//       axios
+//         .post(
+//           "https://edu-mate-server.vercel.app/clear-token",
+//           {},
+//           {
+//             withCredentials: true,
+//           }
+//         )
+//         .then((res) => {
+//           setLoading(false);
+//         })
+//         .catch((err) => {
+//           console.log(err);
+//           setLoading(false);
+//         });
+//     }
+
+//     console.log(currentUser);
+//   });
+
+//   return () => {
+//     unsubscribe();
+//   };
+// }, []);
