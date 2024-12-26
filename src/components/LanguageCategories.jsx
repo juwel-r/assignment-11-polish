@@ -16,7 +16,8 @@ import {
 } from "react-icons/fa";
 import { PiCellTowerLight } from "react-icons/pi";
 import { MdOutlineSchool, MdTranslate } from "react-icons/md";
-import axios from "axios";
+import { LiaLanguageSolid } from "react-icons/lia";
+import { Fade } from "react-awesome-reveal";
 
 const categories = [
   {
@@ -97,28 +98,34 @@ const LanguageCategories = () => {
   return (
     <div>
       <h1 className="text-xl md:text-2xl lg:text-3xl font-semibold flex items-center my-6 mb-4 lg:mt-14 ">
-      Explore Our &nbsp; <span className="text-primary flex items-center gap-1">Languages<FaArrowAltCircleRight /></span> 
+        Explore Our &nbsp;{" "}
+        <span className="text-primary flex items-center gap-1">
+          Languages
+          <LiaLanguageSolid />
+        </span>
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {categories.map((category) => (
-          <Link
-            to={`/find-tutors/${category.title.replace(" ", "-")}`}
-            key={category.id}
-            className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-xl"
-          >
-            <div className="flex items-center gap-6">
-              <span className="text-4xl text-blue-500 bg-blue-100 p-3 rounded-full shadow-md">
-                {category.logo}
-              </span>
-              <div>
-                <h3 className="text-xl font-bold ">{category.title}</h3>
-                <p className="text-sm text-gray-500 mt-1">
-                  {category.count} teachers
-                </p>
+        {categories.map((category, index) => (
+          <Fade delay={index * 50} key={category.id}>
+            <Link
+              to={`/find-tutors/${category.title.replace(" ", "-")}`}
+              key={category.id}
+              className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-xl"
+            >
+              <div className="flex items-center gap-6">
+                <span className="text-4xl text-blue-500 bg-blue-100 p-3 rounded-full shadow-md">
+                  {category.logo}
+                </span>
+                <div>
+                  <h3 className="text-xl font-bold ">{category.title}</h3>
+                  <p className="text-sm text-gray-500 mt-1">
+                    {category.count} teachers
+                  </p>
+                </div>
               </div>
-            </div>
-            <FaArrowRight className="text-blue-500 text-xl transition-transform transform hover:translate-x-1" />
-          </Link>
+              <FaArrowRight className="text-blue-500 text-xl transition-transform transform hover:translate-x-1" />
+            </Link>
+          </Fade>
         ))}
       </div>
     </div>

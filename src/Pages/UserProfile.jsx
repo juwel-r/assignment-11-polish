@@ -23,8 +23,8 @@ const UserProfile = () => {
   };
 
   return (
-    <div className="max-w-lg mx-auto p-6 mt-6 bg-white rounded-lg shadow-md border border-gray-200">
-      <div className="flex flex-col items-center pt-4">
+    <div className="w-[95%] sm:max-w-lg mx-auto p-6 my-6  rounded-lg shadow-md border border-gray-200">
+      <div className="flex flex-col items-center pt-4 mx-6">
         <img
           src={formData.photoURL || "https://via.placeholder.com/150"}
           alt="User Avatar"
@@ -33,7 +33,7 @@ const UserProfile = () => {
         {!editMode ? (
           <>
             <h1 className="text-2xl font-semibold">{formData.displayName}</h1>
-            <p className="text-gray-600">{formData.email}</p>
+            <p className="text-gray-500">{formData.email}</p>
             <button
               className="mt-4 px-4 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-500 green-button"
               onClick={() => setEditMode(true)}
@@ -47,36 +47,36 @@ const UserProfile = () => {
             onSubmit={handleSubmit}
           >
             <div>
-              <label className="block text-gray-700 font-medium">Name</label>
+              <label className="block text-gray-500 font-medium">Name</label>
               <input
                 type="text"
                 name="displayName"
                 value={formData.displayName}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium">Photo URL</label>
+              <label className="block text-gray-500 font-medium">Photo URL</label>
               <input
                 type="url"
                 name="photoURL"
                 value={formData.photoURL}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required
               />
             </div>
             <div>
-              <label className="block text-gray-700 font-medium">Email</label>
+              <label className="block text-gray-500 font-medium">Email</label>
               <input
                 type="email"
                 name="email"
                 readOnly
                 value={formData.email}
                 onChange={handleInputChange}
-                className="w-full px-3 py-2 border rounded-md focus:ring focus:ring-blue-300"
+                className="w-full px-3 py-2 border rounded-md focus:ring-1 focus:ring-primary focus:outline-none"
                 required
               />
             </div>

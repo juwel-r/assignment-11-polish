@@ -32,13 +32,13 @@ const AddTutorial = () => {
       review,
     };
     axios
-      .post("http://localhost:5000/tutorials", tutorialData)
+      .post("http://localhost:5000/tutorials", tutorialData, {withCredentials:true})
       .then((res) => {
         console.log(res.data);
         if (res.data.insertedId) {
           Swal.fire({
             title: "Added Tutorial",
-            text: "New Tutorial Added Successful!",
+            text: "Successfully Added New Tutorial!",
             icon: "success",
             confirmButtonText: "OK",
           });
@@ -71,8 +71,8 @@ const AddTutorial = () => {
   ];
 
   return (
-<div className="min-h-screen p-4 md:pt-8 flex items-start justify-center bg-gradient-to-br from-gray-100 to-gray-300">
-  <div className="max-w-7xl w-full bg-white rounded-xl shadow-lg p-6 md:p-12 flex flex-col md:flex-row gap-8">
+<div className="p-4 md:pt-8 flex items-start justify-center bg-gradient-to-br ">
+  <div className="max-w-7xl w-full  rounded-xl shadow-lg p-6 md:p-12 flex flex-col md:flex-row gap-8">
   <h1 className="md:hidden text-2xl md:text-3xl font-extrabold text-center text-primary">
         Add New Tutorial
       </h1>
@@ -92,7 +92,7 @@ const AddTutorial = () => {
 
       {/* Name */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="name" className="text-sm text-gray-600">
+        <label htmlFor="name" className="text-sm text-gray-500">
           Name
         </label>
         <input
@@ -106,7 +106,7 @@ const AddTutorial = () => {
 
       {/* Email */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="email" className="text-sm text-gray-600">
+        <label htmlFor="email" className="text-sm text-gray-500">
           Email
         </label>
         <input
@@ -120,7 +120,7 @@ const AddTutorial = () => {
 
       {/* Photo URL */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="photoURL" className="text-sm text-gray-600">
+        <label htmlFor="photoURL" className="text-sm text-gray-500">
           Photo URL
         </label>
         <input
@@ -135,7 +135,7 @@ const AddTutorial = () => {
       <div className="flex flex-col lg:flex-row gap-4">
         {/* Category */}
         <div className="flex flex-col gap-1 w-full">
-          <label htmlFor="category" className="text-sm text-gray-600">
+          <label htmlFor="category" className="text-sm text-gray-500">
             Category
           </label>
           <select
@@ -158,7 +158,7 @@ const AddTutorial = () => {
 
         {/* Price */}
         <div className="flex flex-col gap-1 w-full">
-          <label htmlFor="price" className="text-sm text-gray-600">
+          <label htmlFor="price" className="text-sm text-gray-500">
             Price
           </label>
           <input
@@ -174,7 +174,7 @@ const AddTutorial = () => {
 
       {/* Description */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="description" className="text-sm text-gray-600">
+        <label htmlFor="description" className="text-sm text-gray-500">
           Description
         </label>
         <textarea
@@ -187,7 +187,7 @@ const AddTutorial = () => {
 
       {/* Review */}
       <div className="flex flex-col gap-1">
-        <label htmlFor="review" className="text-sm text-gray-600">
+        <label htmlFor="review" className="text-sm text-gray-500">
           Review
         </label>
         <input
@@ -203,7 +203,7 @@ const AddTutorial = () => {
       {/* Submit Button */}
       <button
         type="submit"
-        className="mt-4 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
+        className="mt-2 bg-gradient-to-r from-blue-500 to-indigo-500 text-white font-bold py-2 px-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
       >
         Submit
       </button>

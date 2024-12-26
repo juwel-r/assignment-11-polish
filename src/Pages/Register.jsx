@@ -115,7 +115,7 @@ const Register = () => {
                   />
                 </div>
 
-                <div>
+                <div className="relative">
                   <label className="block text-sm font-medium text-gray-500 mb-2">Password</label>
                   <input
                     type={showPass ? "text" : "password"}
@@ -127,7 +127,7 @@ const Register = () => {
                   />
                   <span
                     onClick={() => setShowPass(!showPass)}
-                    className="absolute top-10 right-4 text-gray-500 hover:text-gray-800 cursor-pointer"
+                    className="absolute top-10 right-4 cursor-pointer"
                   >
                     {showPass ? <VscEye /> : <VscEyeClosed />}
                   </span>

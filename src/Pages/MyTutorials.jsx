@@ -2,6 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import useAuth from "../customHooks/useAuth";
 import Swal from "sweetalert2";
+import LoadingSpin from "../components/LoadingSpin";
+import { TbMoodCry } from "react-icons/tb";
+import { Link } from "react-router-dom";
 
 const MyTutorials = () => {
   const { userInfo } = useAuth();
@@ -9,14 +12,19 @@ const MyTutorials = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentTutorial, setCurrentTutorial] = useState(null);
   const [updatedData, setUpdatedData] = useState(false);
+  const [fetchingData, setFetchingData] = useState(true);
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/tutorials?email=${userInfo.email}`)
+      .get(`http://localhost:5000/tutorials?email=${userInfo.email}`, {withCredentials:true})
       .then((res) => {
         setMyTutorials(res.data);
+        setFetchingData(false);
       })
-      .catch((err) => console.error(err));
+      .catch((err) => {
+        console.error(err);
+        setFetchingData(false);
+      });
   }, [userInfo.email, updatedData]);
 
   const handleDelete = (id) => {
@@ -117,12 +125,24 @@ const MyTutorials = () => {
 
   return (
     <div className="p-8 bg-gradient-to-br  to-gray-200  md:w-11/12 mx-auto w-[95%]">
-      <h2 className="text-4xl font-extrabold text-center mb-12 tracking-wide text-primary">
+      <h2 className="text-2xl lg:text-3xl font-extrabold text-center mb-12 tracking-wide text-primary">
         My Tutorials
       </h2>
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
-        {myTutorials.length > 0 ? (
-          myTutorials.map((tutorial) => (
+      {fetchingData ? (
+        <LoadingSpin></LoadingSpin>
+      ) : myTutorials.length < 1 ? (
+        <div className="flex flex-col justify-center items-center text-left">
+          <h1 className="font-semibold text-lg pt-10 flex items-center gap-2 text-gray-500">
+            <TbMoodCry className="text-4xl" />
+            Sorry, You haven't Added Any Tutorial!
+          </h1>
+          <Link to="/add-tutorial" className="text-primary my-6">
+            <button className="green-button text-sm">Add Tutorial</button>
+          </Link>
+        </div>
+      ) : (
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-10">
+          {myTutorials.map((tutorial) => (
             <div
               key={tutorial._id}
               className="relative shadow-xl rounded-xl transform hover:-rotate-[0.2deg] hover:bg-white hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
@@ -183,13 +203,9 @@ const MyTutorials = () => {
                 </div>
               </div>
             </div>
-          ))
-        ) : (
-          <p className="text-gray-500 text-center col-span-3">
-            No tutorials found.
-          </p>
-        )}
-      </div>
+          ))}
+        </div>
+      )}
 
       {/* Modal */}
       {isModalOpen && (

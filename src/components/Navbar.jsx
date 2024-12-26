@@ -71,13 +71,13 @@ const Navbar = () => {
     });
   };
   return (
-    <nav className="h-[48px] md:h-[64px] flex lg:justify-between items-center relative">
+    <nav className="px-4 sm:px6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
       {/* Right section */}
       <div
         tabIndex={0}
         onBlur={() => setMenuClose(false)}
         onClick={() => setMenuClose(!menuClose)}
-        className="block lg:hidden z-50 relative h-5 w-5 text-2xl pr-4"
+        className="block lg:hidden z-50 relative h-5 w-5 text-2xl text-black pr-4"
       >
         <span
           className={`absolute inset-0 transition-opacity duration-300 ${
@@ -102,10 +102,10 @@ const Navbar = () => {
       {/* Menu */}
       <section className="top-menu flex justify-center w-full mx-auto ">
         <div
-          className={`text-left z-40 flex flex-col lg:flex-row absolute lg:static backdrop-blur-sm bg-white/70 lg:bg-transparent  lg:backdrop-blur-none lg:shadow-none shadow-md p-5 rounded-sm transition-all duration-200 ease-in-out h-screen lg:h-auto ${
+          className={`text-left text-sm sm:text-base text-black z-40 flex flex-col lg:flex-row absolute lg:static backdrop-blur-sm bg-white/90 lg:bg-transparent  lg:backdrop-blur-none lg:shadow-none shadow-md p-5 space-y-2 lg:space-y-0 pl-2 rounded-sm transition-all duration-200 ease-in-out h-screen lg:h-auto ${
             menuClose
-              ? " top-[100%] -left-[3%]"
-              : "top-[100%] md:-left-[45%] -left-[65%]"
+              ? " top-[100%] left-0"
+              : "top-[100%]  -left-96"
           }`}
         >
           {menus}
@@ -160,13 +160,13 @@ const Navbar = () => {
             <>
               <Link
                 to="/register"
-                className="myBtn mr-2 btn btn-outline btn-sm rounded-none"
+                className="myBtn mr-2 btn btn-outline btn-sm rounded-none green-button"
               >
                 Register
               </Link>
               <Link
                 to="/login"
-                className="myBtn mr-2 btn btn-outline btn-sm rounded-none"
+                className="myBtn mr-2 btn btn-outline btn-sm rounded-none green-button"
               >
                 Login
               </Link>
@@ -184,13 +184,13 @@ const Navbar = () => {
       )} */}
       {userInfo && (
         <div
-          className={`flex flex-col items-center gap-2 absolute top-14 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md ${
+          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md ${
             profileMenu ? "opacity-100" : "opacity-0"
           } transition-all duration-300 ease-in-out transform`}
         >
           <div className="w-20 h-20 p-1 border border-primary rounded-full">
             <img
-              className=" rounded-full"
+              className=" rounded-full h-full w-full object-cover"
               src={userInfo.photoURL}
               alt={userInfo.displayName}
             />

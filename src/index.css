@@ -5,7 +5,7 @@
 @tailwind utilities;
 
 .active{
-    color: blueviolet;
+    color: #3b82f6;
 }
 
 body{

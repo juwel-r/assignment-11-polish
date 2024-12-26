@@ -10,6 +10,7 @@ import {
 } from "firebase/auth";
 import auth from "../firebase.config";
 import { useLocation } from "react-router-dom";
+import axios from "axios";
 
 export const AuthContext = createContext("");
 const provider = new GoogleAuthProvider();
@@ -46,9 +47,21 @@ const AuthProvider = ({ children }) => {
   //Check user logged in or not
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      // console.log(currentUser);
-      setUserInfo(currentUser);
+      const user ={ email: currentUser?.email };
       setLoading(false);
+      setUserInfo(currentUser);
+      console.log(user);
+      axios
+          .post("http://localhost:5000/jwt", {email:currentUser?.email}, {
+            withCredentials: true,
+          })
+          .then((res) => {
+            console.log(res.data);
+            setLoading(false);
+          });
+
+      console.log(currentUser);
+
     });
 
     return () => {
@@ -65,7 +78,6 @@ const AuthProvider = ({ children }) => {
   //Toggle Theme
   const [isDark, setDark] = useState(false);
 
-  
   // data set as object to send on context api,
   const authData = {
     createUser,
