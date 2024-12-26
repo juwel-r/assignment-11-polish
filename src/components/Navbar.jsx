@@ -7,7 +7,7 @@ import { GrFavorite } from "react-icons/gr";
 import ThemeController from "./ThemeController";
 import { RxCross2 } from "react-icons/rx";
 import { IoIosList } from "react-icons/io";
-import logo from "../assets/edu-mate-logo.png";
+import logo from "../assets/edu-mate-logo.svg";
 import Swal from "sweetalert2";
 import { Tooltip } from "react-tooltip";
 
@@ -95,7 +95,7 @@ const Navbar = () => {
         </span>
       </div>
       {/* Logo */}
-      <Link to="/" className="text-2xl lg:text-3xl text-nowrap px-2 min-w-fit">
+      <Link to="/" className="ml-2 self-start lg:self-center pt-1 px-2 min-w-fit">
         <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
       </Link>
 
