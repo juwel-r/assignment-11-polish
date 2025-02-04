@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { FaTrophy, FaUserGraduate, FaStar } from "react-icons/fa";
-import { motion } from "framer-motion"; // For light animations
+import { motion } from "framer-motion";
 import { Fade } from "react-awesome-reveal";
 
 const LanguageLeaderboard = () => {
@@ -34,7 +34,7 @@ const LanguageLeaderboard = () => {
                 className="p-6 bg-gray-100 rounded-lg shadow-md hover:shadow-lg transition-all duration-300"
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
-                transition={{ delay: index * 0.5 }}
+                transition={{ delay: index * 0.2 }}
               >
                 <Fade delay={index * 100}>
                 <div className="flex items-center mb-4">

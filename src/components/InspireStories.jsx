@@ -33,7 +33,7 @@ const InspireStories = () => {
   return (
     <section className="bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-6 my-6 md:mt-12">
       <div className="text-center mb-12">
-        <h2 className="text-3xl lg:text-4xl font-bold text-blue-800">
+        <h2 className="text-2xl lg:text-3xl font-bold text-blue-800">
           Inspire Through Stories
         </h2>
         <p className="text-gray-600 mt-4">

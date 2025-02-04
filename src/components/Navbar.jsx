@@ -184,7 +184,7 @@ const Navbar = () => {
       )} */}
       {userInfo && (
         <div
-          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md ${
+          className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md mr-2 ${
             profileMenu ? "opacity-100" : "opacity-0"
           } transition-all duration-300 ease-in-out transform`}
         >

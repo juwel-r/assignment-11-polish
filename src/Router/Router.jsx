@@ -17,7 +17,7 @@ const router = createBrowserRouter([
   {
     element: <MainLayout></MainLayout>,
     path: "/",
-    errorElement:<ErrorPage></ErrorPage>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         element: <HomeLayout></HomeLayout>,
@@ -47,7 +47,7 @@ const router = createBrowserRouter([
         ),
         path: "/tutor/:details",
         loader: ({ params }) =>
-          fetch(`https://edu-mate-server.vercel.app/tutor/${params.details}`),
+          fetch(`http://localhost:5000/tutor/${params.details}`),
       },
       {
         element: (

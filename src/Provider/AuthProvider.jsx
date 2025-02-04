@@ -47,9 +47,8 @@ const AuthProvider = ({ children }) => {
   //Check user logged in or not
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
-      const user = { email: currentUser?.email };
-      setLoading(false);
       setUserInfo(currentUser);
+      setLoading(false);
       axios
         .post(
           "https://edu-mate-server.vercel.app/jwt",
@@ -60,10 +59,7 @@ const AuthProvider = ({ children }) => {
         )
         .then((res) => {
           console.log(res.data);
-          setLoading(false);
         });
-
-      console.log(currentUser);
     });
 
     return () => {

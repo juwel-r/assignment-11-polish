@@ -6,6 +6,7 @@ import Swal from "sweetalert2";
 import LoadingSpin from "../components/LoadingSpin";
 import { TbMoodCry } from "react-icons/tb";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 
 const MyBookedTutorials = () => {
   const { userInfo } = useAuth();
@@ -14,12 +15,9 @@ const MyBookedTutorials = () => {
   const [fetching, setFetching] = useState(true);
   useEffect(() => {
     axios
-      .get(
-        `https://edu-mate-server.vercel.app/booked-tutorials?email=${userInfo.email}`,
-        {
-          withCredentials: true,
-        }
-      )
+      .get(`http://localhost:5000/booked-tutorials?email=${userInfo.email}`, {
+        withCredentials: true,
+      })
       .then((res) => {
         setBookedTutorials(res.data);
         setFetching(false);
@@ -32,7 +30,7 @@ const MyBookedTutorials = () => {
 
   const reviewUpdateHandler = (tutorId, reviews) => {
     axios
-      .put(`https://edu-mate-server.vercel.app/tutorials/${tutorId}`)
+      .put(`http://localhost:5000/tutorials/${tutorId}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({
@@ -100,8 +98,11 @@ const MyBookedTutorials = () => {
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
         {bookedTutorials &&
-          bookedTutorials.map((tutorial) => (
-            <div
+          bookedTutorials.map((tutorial, index) => (
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: index * 0.2 }}
               key={tutorial._id}
               className={` border-gray-100 rounded-2xl overflow-hidden transform transition-all duration-300 ${
                 tutorial.tutorName
@@ -156,7 +157,7 @@ const MyBookedTutorials = () => {
                   </>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
       </div>
     </div>

@@ -106,7 +106,7 @@ const LanguageCategories = () => {
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {categories.map((category, index) => (
-          <Fade delay={index * 50} key={category.id}>
+          <Fade delay={index * 30} key={category.id}>
             <Link
               to={`/find-tutors/${category.title.replace(" ", "-")}`}
               key={category.id}
