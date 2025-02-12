@@ -55,28 +55,30 @@ const LanguageCategories = () => {
         </span>
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-        {categoryCount.slice(0,12).map((category, index) => (
-          <Fade triggerOnce delay={index * 30} key={category.id}>
-            <Link
-              to={`/find-tutors/${category._id.replace(" ", "-")}`}
-              key={category.id}
-              className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-lg"
-            >
-              <div className="flex items-center gap-6">
-                <span className="text-4xl text-blue-500 bg-blue-100 p-3 rounded-full shadow-md">
-                  {categories[index]}
-                </span>
-                <div>
-                  <h3 className="text-xl font-bold ">{category._id}</h3>
-                  <p className="text-sm text-gray-500 mt-1">
-                    {category.count} Teachers
-                  </p>
+        {categoryCount &&
+          categoryCount.length > 0 &&
+          categoryCount.slice(0, 12).map((category, index) => (
+            <Fade triggerOnce delay={index * 30} key={category.id}>
+              <Link
+                to={`/find-tutors/${category._id.replace(" ", "-")}`}
+                key={category.id}
+                className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-lg"
+              >
+                <div className="flex items-center gap-6">
+                  <span className="text-4xl text-blue-500 bg-blue-100 p-3 rounded-full shadow-md">
+                    {categories[index]}
+                  </span>
+                  <div>
+                    <h3 className="text-xl font-bold ">{category._id}</h3>
+                    <p className="text-sm text-gray-500 mt-1">
+                      {category.count} Teachers
+                    </p>
+                  </div>
                 </div>
-              </div>
-              <FaArrowRight className="text-blue-500 text-xl transition-transform transform hover:translate-x-1" />
-            </Link>
-          </Fade>
-        ))}
+                <FaArrowRight className="text-blue-500 text-xl transition-transform transform hover:translate-x-1" />
+              </Link>
+            </Fade>
+          ))}
       </div>
     </div>
   );

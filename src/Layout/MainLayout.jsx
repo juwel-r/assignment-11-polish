@@ -25,7 +25,7 @@ const MainLayout = () => {
       data-theme={isDark ? "dark" : "light"}
     >
       {loading ? (
-        <div className="flex items-center justify-center h-screen"><FaSpinner className="text-9xl text-primary animate-spin w-full mx-auto " /></div>
+        <div className="flex items-center justify-center min-h-screen overflow-auto"><FaSpinner className="text-9xl text-primary animate-spin w-full mx-auto " /></div>
       ) : (
         <>
           {" "}
