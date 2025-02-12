@@ -55,18 +55,7 @@ const MyBookedTutorials = () => {
       });
   };
 
-  // if (bookedTutorials.length < 1 ) {
-  //   return (
-  // <div className="" >
-  //   <h1 className="text-center font-bold text-3xl pt-10 text-primary">
-  //     You haven't Booked Any Session
-  //   </h1>
-  //   <p className="text-center my-4">
-  //     If you not booked any session please select your tutor and book any session.{" "}
-  //   </p>
-  // </div>
-  //   );
-  // }
+
 
   return (
     <div className="container mx-auto px-6 py-6">
@@ -104,7 +93,7 @@ const MyBookedTutorials = () => {
               animate={{ opacity: 1 }}
               transition={{ delay: index * 0.2 }}
               key={tutorial._id}
-              className={` border-gray-100 rounded-2xl overflow-hidden transform transition-all duration-300 ${
+              className={` border-gray-100 rounded-lg overflow-hidden transform transition-all duration-300 ${
                 tutorial.tutorName
                   ? "shadow-sm border hover:rotate-[0.5deg] hover:scale-[1.001] hover:shadow-xl "
                   : "opacity-40 bg-gray-50"

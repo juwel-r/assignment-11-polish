@@ -83,7 +83,7 @@ const InspireStories = () => {
       {/* Call to Action */}
       <div className="text-center mt-12">
         <Bounce direction="">
-          <Link to={"coming-soon"} className="px-6 py-3 text-white bg-blue-600 hover:bg-blue-700 rounded-lg shadow-md transition-all duration-300">
+          <Link to={"coming-soon"} className="md:px-6 px-4 py-3 bg-gradient-to-r from-blue-500 to-cyan-500 text-white rounded-full shadow-lg hover:from-transparent hover:to-transparent hover:border-2 hover:text-primary border-primary  transform transition-all duration-300">
             Start Your Journey Today
           </Link >
         </Bounce>
@@ -93,3 +93,4 @@ const InspireStories = () => {
 };
 
 export default InspireStories;
+

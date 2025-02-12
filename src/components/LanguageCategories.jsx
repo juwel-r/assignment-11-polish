@@ -60,7 +60,7 @@ const LanguageCategories = () => {
             <Link
               to={`/find-tutors/${category._id.replace(" ", "-")}`}
               key={category.id}
-              className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-xl"
+              className="flex justify-between items-center hover:bg-white p-5 border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-[1.001] rounded-lg"
             >
               <div className="flex items-center gap-6">
                 <span className="text-4xl text-blue-500 bg-blue-100 p-3 rounded-full shadow-md">

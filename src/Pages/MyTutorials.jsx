@@ -147,7 +147,7 @@ const MyTutorials = () => {
           {myTutorials.map((tutorial) => (
             <div
               key={tutorial._id}
-              className="relative shadow-xl rounded-xl transform hover:-rotate-[0.2deg] hover:bg-white hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
+              className="relative shadow-xl rounded-lg transform hover:-rotate-[0.2deg] hover:bg-white hover:scale-[1.01] transition-all duration-300 flex flex-col justify-between"
               style={{ perspective: "1000px" }}
             >
               {/* Image Section */}
