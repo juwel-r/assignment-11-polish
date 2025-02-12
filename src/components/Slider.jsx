@@ -1,8 +1,7 @@
 import React from "react";
 import slide1 from "../assets/slide_Photo/slide1.jpg";
 import slide2 from "../assets/slide_Photo/slide2.jpg";
-import slide3 from "../assets/slide_Photo/slide3.png";
-import slide4 from "../assets/slide_Photo/slide4.png";
+import slide3 from "../assets/slide_Photo/slide3.jpg";
 // import SliderContent from "./SliderContent";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay, A11y } from "swiper/modules";
@@ -57,7 +56,7 @@ const Slider = () => {
       {slider.map((slide, index) => (
         <SwiperSlide key={index}>
           <div
-            className={`carousel-item marker:relative w-full bg-cover object-cover bg-right-top md:py-8 lg:py-16 lg:h-[80vh]`}
+            className={`carousel-item marker:relative w-full bg-cover object-cover bg-right-top md:py-8 lg:py-16 lg:h-[50vh]`}
             style={{ backgroundImage: `url(${slide.cover})` }}
           >
             <div className=" absolute inset-0 bg-black bg-opacity-50"></div>

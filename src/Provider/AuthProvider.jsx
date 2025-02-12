@@ -43,6 +43,8 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
+  
+  // https://edu-mate-server.vercel.app
 
   //Check user logged in or not
   useEffect(() => {
@@ -51,7 +53,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       axios
         .post(
-          "https://edu-mate-server.vercel.app/jwt",
+          "http://localhost:5000/jwt",
           { email: currentUser?.email },
           {
             withCredentials: true,
@@ -74,7 +76,7 @@ const AuthProvider = ({ children }) => {
   };
 
   //Toggle Theme
-  const [isDark, setDark] = useState(false);
+  const [isDark, setDark] = useState(null);
 
   // data set as object to send on context api,
   const authData = {

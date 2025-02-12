@@ -10,10 +10,10 @@ const TutorCard = ({ tutor }) => {
   const { _id, name, email, photoURL, category, price, description, review } =
     tutor;
   return (
-    <div className="grid grid-cols-2 md:grid-cols-[2fr_5fr] p-6 shadow-lg rounded-lg gap-4 transform transition duration-300 ease-in-out hover:scale-[1.005] hover:shadow-2xl hover:-rotate-[0.5deg] hover:bg-gray-50">
+    <div className="min-h-[275px] grid grid-cols-2 md:grid-cols-[2fr_5fr] p-6 shadow-lg rounded-lg gap-x-4 transform transition duration-300 ease-in-out hover:scale-[1.005] hover:shadow-2xl hover:-rotate-[0.5deg] hover:bg-gray-50">
       {/* Photo */}
       <section className="relative md:row-span-3 rounded-lg overflow-hidden transition-transform duration-300 hover:scale-[1.02] hover:rotate-2">
-        <Fade direction="up" delay={50}>
+        <Fade triggerOnce direction="up" delay={50}>
           {" "}
           <img
             className="h-full w-full object-cover rounded-lg"
@@ -21,7 +21,7 @@ const TutorCard = ({ tutor }) => {
             alt={name}
           />
         </Fade>
-        <Fade delay={50}>
+        <Fade triggerOnce delay={50}>
           <div className="absolute top-2 left-2 bg-primary/80 text-white text-xs px-3 py-1 rounded-full shadow-lg">
             {category}
           </div>
@@ -30,7 +30,7 @@ const TutorCard = ({ tutor }) => {
 
       {/* Top Section */}
       <section className="flex flex-col sm:justify-between md:flex-row md:justify-between mt-4 md:mt-0 md:pt-4">
-        <Fade className="flex flex-col md:w-[70%]">
+        <Fade triggerOnce className="flex flex-col md:w-[70%]">
           <h3 className="text-xl md:text-2xl font-semibold  hover:text-primary transition duration-200">
             {name}
           </h3>
@@ -40,36 +40,35 @@ const TutorCard = ({ tutor }) => {
           </div>
         </Fade>
 
-        <Fade
-          direction="down"
-          className="flex flex-col md:flex-row items-start sm:gap-6 mt-4 md:mt-0"
-        >
+        <div className="flex flex-col items-start sm:gap-x-6 mt-4 md:mt-0">
           {/* Review */}
-          <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
+          <div className="flex  flex-row-reverse items-start gap-2">
             <span className="font-semibold text-primary">{review}</span>
             <p className="md:text-sm font-normal text-gray-500">Reviews:</p>
           </div>
 
           {/* Price */}
-          <div className="flex md:flex-col flex-row-reverse items-start gap-2 md:gap-0">
+          <div className="flex  flex-row-reverse items-start gap-2 ">
             <span className="font-semibold text-primary">${price}</span>
             <p className="md:text-sm font-normal text-gray-500">Price: </p>
           </div>
-        </Fade>
+        </div>
       </section>
 
       {/* Description */}
       <Fade
+        triggerOnce
         direction="up"
         className="mt-4 text-gray-500 text-sm leading-relaxed col-span-2 md:col-span-1"
       >
-        <p>{description}</p>
+        <p>{description.slice(0, 200)}...</p>
       </Fade>
 
       {/* Bottom Section */}
       <Fade
+        triggerOnce
         delay={100}
-        className="col-span-2 md:col-span-1 md:justify-self-end mt-2 md:mt-0"
+        className="col-span-2 md:col-span-1 md:justify-self-end mt-2 "
       >
         <Link to={`/tutor/${_id}`} className="text-sm font-medium green-button">
           View Details

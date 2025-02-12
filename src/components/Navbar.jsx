@@ -16,23 +16,30 @@ const Navbar = () => {
   const navigate = useNavigate();
   const [menuClose, setMenuClose] = useState(false);
   const [profileMenu, setProfileMenu] = useState(false);
-  const email1stLetter = userInfo && userInfo.email.charAt(0).toUpperCase();
+  // const email1stLetter = userInfo && userInfo.email.charAt(0).toUpperCase();
   const menus = (
     <>
-      <NavLink to="/" className="px-2">
+      <NavLink to="/" className="px-[7px]">
         Home
       </NavLink>
-      <NavLink to="/find-tutors" className="px-2">
+      <NavLink to="/find-tutors" className="px-[7px]">
         Find Tutors
       </NavLink>
-      <NavLink to="/add-tutorial" className="px-2">
-        Add Tutorials
-      </NavLink>
-      <NavLink to="/my-tutorials" className="px-2">
-        My Tutorials
-      </NavLink>
-      <NavLink to="my-booked-tutorials" className="px-2">
-        My Booked Tutorials
+      {userInfo && (
+        <>
+          <NavLink to="/add-tutorial" className="px-[7px]">
+            Add Tutorials
+          </NavLink>
+          <NavLink to="/my-tutorials" className="px-[7px]">
+            My Tutorials
+          </NavLink>
+          <NavLink to="my-booked-tutorials" className="px-[7px]">
+            Booked Tutorials
+          </NavLink>
+        </>
+      )}
+      <NavLink to={"about-us"} className="px-[7px]">
+        About Us
       </NavLink>
     </>
   );
@@ -71,7 +78,7 @@ const Navbar = () => {
     });
   };
   return (
-    <nav className="px-4 sm:px6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
+    <nav className="px-6 h-[48px] md:h-[64px] flex lg:justify-between items-center relative border-b">
       {/* Right section */}
       <div
         tabIndex={0}
@@ -95,31 +102,29 @@ const Navbar = () => {
         </span>
       </div>
       {/* Logo */}
-      <Link to="/" className="ml-2 self-start lg:self-center pt-1 px-2 min-w-fit">
-        <img className="h-9 w-full md:h-10" src={logo} alt="edu-mate-logo" />
+      <Link to="/" className="self-start lg:self-center pt-1 min-w-fit">
+        <img className="h-9 w-fit md:h-10 ml-2 lg:ml-0" src={logo} alt="edu-mate-logo" />
       </Link>
 
       {/* Menu */}
       <section className="top-menu flex justify-center w-full mx-auto ">
         <div
           className={`text-left text-sm sm:text-base text-black z-40 flex flex-col lg:flex-row absolute lg:static backdrop-blur-sm bg-white/90 lg:bg-transparent  lg:backdrop-blur-none lg:shadow-none shadow-md p-5 space-y-2 lg:space-y-0 pl-2 rounded-sm transition-all duration-200 ease-in-out h-screen lg:h-auto ${
-            menuClose
-              ? " top-[100%] left-0"
-              : "top-[100%]  -left-96"
+            menuClose ? " top-[100%] left-0 pointer-events-non" : "top-[100%]  -left-96 "
           }`}
         >
           {menus}
           <div className="flex flex-col lg:hidden">
             {userInfo ? (
-              <button onClick={logOut} className="text-left px-2">
+              <button onClick={logOut} className="text-left px-[7px]">
                 Logout
               </button>
             ) : (
               <>
-                <Link to="/login" className="px-2">
+                <Link to="/login" className="px-2 border-t pt-2 mt-2">
                   Login
                 </Link>
-                <Link to="/register" className="px-2">
+                <Link to="/register" className="px-2 pt-2">
                   Register
                 </Link>
               </>
@@ -177,11 +182,7 @@ const Navbar = () => {
         {/* theme controller */}
         <ThemeController></ThemeController>
       </section>
-      {/* {profileMenu ? (
 
-      ) : (
-        ""
-      )} */}
       {userInfo && (
         <div
           className={`flex flex-col items-center gap-2 absolute top-12 sm:top-16 right-0 bg-white p-2 border border-primary shadow-md max-w-80 min-w-52 rounded-md mr-2 ${

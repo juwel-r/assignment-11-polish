@@ -12,6 +12,7 @@ import MyBookedTutorials from "../Pages/MyBookedTutorials";
 import TutorByCategories from "../Pages/TutorByCategories";
 import UserProfile from "../Pages/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
+import AboutUs from "../Pages/AboutUs";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +24,11 @@ const router = createBrowserRouter([
         element: <HomeLayout></HomeLayout>,
         path: "/",
       },
+      {
+        element: <AboutUs></AboutUs>,
+        path: "/about-us",
+      },
+
       {
         element: <Login></Login>,
         path: "/login",

@@ -39,7 +39,7 @@ const OneMinuteLessons = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         {lessons &&
           lessons.map((lesson, index) => (
-            <Fade delay={index * 200} key={lesson.id}>
+            <Fade triggerOnce delay={index * 200} key={lesson.id}>
               <div
                 key={lesson.id}
                 className="p-6 bg-white border border-gray-200 shadow-md rounded-lg hover:shadow-lg transition-all duration-300"

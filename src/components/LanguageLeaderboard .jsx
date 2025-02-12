@@ -10,16 +10,14 @@ const LanguageLeaderboard = () => {
     fetch("topTutors.json")
       .then((res) => res.json())
       .then((data) => setTutors(data));
-
   }, []);
-//   console.log(tutors);
+  //   console.log(tutors);
   return (
     <section className="my-12 px-4">
       <h2 className="text-2xl lg:text-3xl font-bold text-center mb-6 text-primary">
         <FaTrophy className="inline-block mr-2" />
         Language Leaderboard
       </h2>
-
 
       {/* Top Tutors Section */}
       <div className=" p-8 pt-0 rounded-lg shadow-lg">
@@ -36,20 +34,21 @@ const LanguageLeaderboard = () => {
                 animate={{ opacity: 1 }}
                 transition={{ delay: index * 0.2 }}
               >
-                <Fade delay={index * 100}>
-                <div className="flex items-center mb-4">
-                  <FaStar className="text-3xl text-yellow-500 mr-4" />
-                  <span className="text-xl font-semibold">{tutor.name}</span>
-                </div>
-                <div className="">
-                  <p>Languages: {tutor.languages}</p>
-                  <p>
-                    Rating: <span className="font-bold">{tutor.rating}/5</span>
-                  </p>
-                  <p className="mt-2">
-                    Students Helped: {tutor.studentsHelped}
-                  </p>
-                </div>
+                <Fade triggerOnce delay={index * 100}>
+                  <div className="flex items-center mb-4">
+                    <FaStar className="text-3xl text-yellow-500 mr-4" />
+                    <span className="text-xl font-semibold">{tutor.name}</span>
+                  </div>
+                  <div className="">
+                    <p>Languages: {tutor.languages}</p>
+                    <p>
+                      Rating:{" "}
+                      <span className="font-bold">{tutor.rating}/5</span>
+                    </p>
+                    <p className="mt-2">
+                      Students Helped: {tutor.studentsHelped}
+                    </p>
+                  </div>
                 </Fade>
               </motion.div>
             ))}

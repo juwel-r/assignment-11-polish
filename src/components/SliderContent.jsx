@@ -4,7 +4,7 @@ import { Fade } from "react-awesome-reveal";
 
 const SliderContent = ({ title, description, description2 }) => {
   return (
-    <Fade direction="left">
+    <Fade triggerOnce direction="left">
       <div className="flex text-left justify-start max-w-96 md:max-w-[600px] lg:max-w-full items-start flex-col my-8 px-6 lg:pl-44 md:px-10 lg:space-y-8 text-white">
         <h1 className="mt-8 md:text-xl text-sm">{title}</h1>
 

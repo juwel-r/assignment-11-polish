@@ -1,7 +1,11 @@
 import React, { useEffect, useState } from "react";
 import TutorCard from "../components/TutorCard";
 import axios from "axios";
-import { FaSearch } from "react-icons/fa";
+import {
+  FaSearch,
+  FaSortNumericDown,
+  FaSortNumericDownAlt,
+} from "react-icons/fa";
 import { IoIosSearch } from "react-icons/io";
 import LoadingSpin from "../components/LoadingSpin";
 import { TbMoodCry } from "react-icons/tb";
@@ -12,6 +16,20 @@ const FindTutors = () => {
   const [searchValue, setSearchValue] = useState("");
   console.log(searchValue);
   const [fetchingData, setFetchingData] = useState(true);
+  const [ascending, setAscending] = useState(null);
+
+  const handleSort = () => {
+    if (ascending === true || ascending === null) {
+      const sortData = [...tutors].sort((a, b) => b.price - a.price);
+      setTutors(sortData);
+      setAscending(false);
+    }
+    if (ascending === false) {
+      const sortData = [...tutors].sort((a, b) => a.price - b.price);
+      setTutors(sortData);
+      setAscending(true);
+    }
+  };
 
   useEffect(() => {
     axios
@@ -39,10 +57,10 @@ const FindTutors = () => {
           session today and take the first step toward mastering a new language!
         </p>
       </div>
-      <div className="mb-6">
+      <div className="mb-6 flex gap-x-2 md:gap-x-6 items-center justify-center ">
         <form
           onSubmit={(e) => e.preventDefault()}
-          className="flex justify-between items-center w-full md:w-1/2  border border-gray-300 rounded-md mx-auto"
+          className="flex justify-between items-center w-full md:w-1/2  border border-gray-300 rounded-md"
         >
           <input
             onChange={(e) => setSearchValue(e.target.value)}
@@ -52,10 +70,20 @@ const FindTutors = () => {
             className="w-full p-2 rounded-md focus:outline-none focus:ring-1 focus:ring-primary"
           />
           <button>
-            {" "}
             <IoIosSearch className="text-2xl mx-2 " />
           </button>
         </form>
+        <section className="h-full min-w-fit">
+          <button
+            onClick={handleSort}
+            className="text-center  font-bold flex items-center gap-2 bg-primary/60 py-2 px-2 md:px-4 rounded-md active:scale-95 transition-all duration-300"
+          >
+            Sort ({ascending || ascending === null ? "a-z" : "z-a"})
+            <span>
+              {ascending ? <FaSortNumericDownAlt /> : <FaSortNumericDown />}
+            </span>
+          </button>
+        </section>
       </div>
 
       {fetchingData ? (
