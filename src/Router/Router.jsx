@@ -13,6 +13,7 @@ import TutorByCategories from "../Pages/TutorByCategories";
 import UserProfile from "../Pages/UserProfile";
 import ErrorPage from "../Pages/ErrorPage";
 import AboutUs from "../Pages/AboutUs";
+import ComingSoon from "../Pages/ComingSoon";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         element: <AboutUs></AboutUs>,
         path: "/about-us",
+      },
+      {
+        element: <ComingSoon></ComingSoon>,
+        path: "/coming-soon",
       },
 
       {
