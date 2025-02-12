@@ -92,7 +92,7 @@ const FindTutors = () => {
         <div className="flex flex-col items-center justify-center text-left">
           <h1 className="font-semibold text-lg pt-10 flex items-center gap-2 text-gray-500">
             <TbMoodCry className="text-4xl" />
-            Somthing Went Wrong!
+            Something Went Wrong!
           </h1>
           <p className=" my-2">Please Try Again Later or Add A Tutorial</p>
           <Link to="/find-tutors" className="text-primary my-4">
