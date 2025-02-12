@@ -2,7 +2,7 @@ import React from "react";
 
 const AboutUs = () => {
   return (
-    <div className="bg-gray-100 text-gray-900 py-12 px-6 min-h-screen flex flex-col items-center">
+    <div className=" py-12 px-6 min-h-screen flex flex-col items-center">
       <div className="max-w-5xl w-full bg-white shadow-lg rounded-lg p-8 text-center">
         <h1 className="text-4xl font-bold text-blue-600 mb-6">About Edu Mate</h1>
         <p className="text-lg text-gray-700 leading-relaxed">

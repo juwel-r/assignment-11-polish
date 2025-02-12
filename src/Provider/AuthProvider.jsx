@@ -43,7 +43,7 @@ const AuthProvider = ({ children }) => {
     setLoading(true);
     return signInWithPopup(auth, provider);
   };
-  
+
   // https://edu-mate-server.vercel.app
 
   //Check user logged in or not
@@ -77,6 +77,11 @@ const AuthProvider = ({ children }) => {
 
   //Toggle Theme
   const [isDark, setDark] = useState(null);
+  useState(() => {
+    window.matchMedia("(prefers-color-scheme: dark)").matches
+      ? setDark(true)
+      : setDark(false);
+  }, [isDark]);
 
   // data set as object to send on context api,
   const authData = {

@@ -1,5 +1,6 @@
-import React from "react";
-import { JackInTheBox, Fade, Bounce } from "react-awesome-reveal";
+import React, { useContext } from "react";
+import { Fade, Bounce } from "react-awesome-reveal";
+import { AuthContext } from "../Provider/AuthProvider";
 
 // Sample data for stories
 const stories = [
@@ -33,8 +34,9 @@ const stories = [
 ];
 
 const InspireStories = () => {
+  const { isDark } = useContext(AuthContext);
   return (
-    <section className="bg-gradient-to-br from-blue-50 to-cyan-100 py-12 px-6 mt-6 md:mt-12">
+    <section className={` ${isDark?"":"bg-gradient-to-br from-blue-50 to-cyan-100"}  py-12 px-6 mt-6 md:mt-12`}>
       <div className="text-center mb-12">
         <h2 className="text-2xl lg:text-3xl font-bold text-blue-800">
           Inspire Through Stories

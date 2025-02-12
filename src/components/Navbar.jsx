@@ -102,8 +102,8 @@ const Navbar = () => {
         </span>
       </div>
       {/* Logo */}
-      <Link to="/" className="self-start lg:self-center pt-1 min-w-fit">
-        <img className="h-9 w-fit md:h-10 ml-2 lg:ml-0" src={logo} alt="edu-mate-logo" />
+      <Link to="/" className="self-start lg:self-center pt-1">
+        <img className="h-9 w-fi md:h-10 ml-2 lg:ml-0" src={logo} alt="edu-mate-logo" />
       </Link>
 
       {/* Menu */}
