@@ -15,9 +15,12 @@ const MyBookedTutorials = () => {
   const [fetching, setFetching] = useState(true);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/booked-tutorials?email=${userInfo.email}`, {
-        withCredentials: true,
-      })
+      .get(
+        `https://edu-mate-server.vercel.app/booked-tutorials?email=${userInfo.email}`,
+        {
+          withCredentials: true,
+        }
+      )
       .then((res) => {
         setBookedTutorials(res.data);
         setFetching(false);
@@ -30,7 +33,7 @@ const MyBookedTutorials = () => {
 
   const reviewUpdateHandler = (tutorId, reviews) => {
     axios
-      .put(`http://localhost:5000/tutorials/${tutorId}`)
+      .put(`https://edu-mate-server.vercel.app/tutorials/${tutorId}`)
       .then((res) => {
         if (res.data.modifiedCount > 0) {
           Swal.fire({
@@ -54,8 +57,6 @@ const MyBookedTutorials = () => {
         console.log(err);
       });
   };
-
-
 
   return (
     <div className="container mx-auto px-6 py-6">

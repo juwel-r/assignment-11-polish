@@ -33,7 +33,9 @@ const FindTutors = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/tutorials/search?value=${searchValue}`)
+      .get(
+        `https://edu-mate-server.vercel.app/tutorials/search?value=${searchValue}`
+      )
       .then((res) => {
         setTutors(res.data);
         setFetchingData(false);

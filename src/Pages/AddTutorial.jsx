@@ -32,7 +32,7 @@ const AddTutorial = () => {
       review,
     };
     axios
-      .post("http://localhost:5000/tutorials", tutorialData, {
+      .post("https://edu-mate-server.vercel.app/tutorials", tutorialData, {
         withCredentials: true,
       })
       .then((res) => {
@@ -76,7 +76,8 @@ const AddTutorial = () => {
     <div className="p-4 md:pt-8 flex items-start justify-center bg-gradient-to-br ">
       <div className="max-w-7xl w-full  rounded-xl shadow-lg p-6 md:p-12 flex flex-col md:flex-row gap-8">
         <h1 className="md:hidden text-2xl md:text-3xl font-extrabold text-center text-primary">
-          Add New Tutorial </h1>
+          Add New Tutorial{" "}
+        </h1>
         {/* Animation */}
         <div className="w-full md:w-1/2 flex items-center justify-center">
           <Lottie

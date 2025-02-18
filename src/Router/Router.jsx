@@ -58,7 +58,7 @@ const router = createBrowserRouter([
         ),
         path: "/tutor/:details",
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/tutor/${params.details}`),
+          fetch(`https://edu-mate-server.vercel.app/tutor/${params.details}`),
       },
       {
         element: (

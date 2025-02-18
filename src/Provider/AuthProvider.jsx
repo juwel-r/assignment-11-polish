@@ -53,7 +53,7 @@ const AuthProvider = ({ children }) => {
       setLoading(false);
       axios
         .post(
-          "http://localhost:5000/jwt",
+          "https://edu-mate-server.vercel.app/jwt",
           { email: currentUser?.email },
           {
             withCredentials: true,

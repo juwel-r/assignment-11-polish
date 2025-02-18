@@ -8,10 +8,12 @@ const TutorByCategories = () => {
   category = category.replace("-", " ");
   const [tutors, setTutors] = useState([]);
   useEffect(() => {
-    axios.get(`http://localhost:5000/tutorials/${category}`).then((res) => {
-      console.log(res.data);
-      setTutors(res.data);
-    });
+    axios
+      .get(`https://edu-mate-server.vercel.app/tutorials/${category}`)
+      .then((res) => {
+        console.log(res.data);
+        setTutors(res.data);
+      });
   }, []);
   console.log(tutors);
   return (

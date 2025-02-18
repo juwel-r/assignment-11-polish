@@ -24,7 +24,7 @@ const TutorDetails = () => {
       studentEmail: userInfo.email,
     };
     axios
-      .post("http://localhost:5000/booked-tutorials", bookedData)
+      .post("https://edu-mate-server.vercel.app/booked-tutorials", bookedData)
       .then((res) => {
         if (res.data.insertedId) {
           Swal.fire({

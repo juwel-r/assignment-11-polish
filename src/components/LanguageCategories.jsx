@@ -24,7 +24,7 @@ import { useEffect, useState } from "react";
 const LanguageCategories = () => {
   const [categoryCount, setCategoryCount] = useState([]);
   useEffect(() => {
-    axios("http://localhost:5000/tutorials/count").then((res) =>
+    axios("https://edu-mate-server.vercel.app/tutorials/count").then((res) =>
       setCategoryCount(res.data)
     );
   }, []);
